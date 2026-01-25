@@ -16,6 +16,8 @@ linter:
 # https://dart.dev/guides/language/analysis-options
 
 dcm:
+  extends:
+    - metrics-recommended
   rules:
     #--------BLoC-------------
     # Crash & leak prevention

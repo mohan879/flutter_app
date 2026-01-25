@@ -1,0 +1,307 @@
+{
+	"formatVersion": 12,
+	"timestamp": "2026-01-11 00:07:25.000",
+	"summary": [
+		{ "title": "Total metric high severity violations", "value": 9 },
+		{ "title": "Scanned folders", "value": 6 },
+		{ "title": "Scanned files", "value": 47 },
+		{ "title": "Scanned classes", "value": 186 },
+		{
+			"title": "CBO",
+			"value": 5,
+			"avg": 4.672043010752688,
+			"max": 32,
+			"min": 0,
+			"sum": 869
+		},
+		{
+			"title": "CYCLO",
+			"value": 0,
+			"avg": 1.224755700325733,
+			"max": 6,
+			"min": 0,
+			"sum": 376
+		},
+		{
+			"title": "DIT",
+			"value": 0,
+			"avg": 2.949367088607595,
+			"max": 4,
+			"min": 0,
+			"sum": 466
+		},
+		{
+			"title": "MNL",
+			"value": 0,
+			"avg": 0.2012987012987013,
+			"max": 3,
+			"min": 0,
+			"sum": 62
+		},
+		{
+			"title": "NOEI",
+			"value": 0,
+			"avg": 1.6382978723404256,
+			"max": 4,
+			"min": 0,
+			"sum": 77
+		},
+		{
+			"title": "NOI",
+			"value": 0,
+			"avg": 1.6595744680851063,
+			"max": 4,
+			"min": 0,
+			"sum": 78
+		},
+		{
+			"title": "NOII",
+			"value": 0,
+			"avg": 0.0053475935828877,
+			"max": 1,
+			"min": 0,
+			"sum": 1
+		},
+		{
+			"title": "NOM",
+			"value": 0,
+			"avg": 1.436046511627907,
+			"max": 8,
+			"min": 0,
+			"sum": 247
+		},
+		{
+			"title": "NOP",
+			"value": 0,
+			"avg": 0.59375,
+			"max": 2,
+			"min": 0,
+			"sum": 114
+		},
+		{
+			"title": "NUW",
+			"value": 2,
+			"avg": 3.6741573033707864,
+			"max": 26,
+			"min": 0,
+			"sum": 327
+		},
+		{
+			"title": "SLOC",
+			"value": 1,
+			"avg": 6.889473684210526,
+			"max": 83,
+			"min": 0,
+			"sum": 1309
+		},
+		{
+			"title": "WMC",
+			"value": 0,
+			"avg": 1.813953488372093,
+			"max": 13,
+			"min": 0,
+			"sum": 312
+		},
+		{
+			"title": "WNL",
+			"value": 1,
+			"avg": 2.269662921348315,
+			"max": 9,
+			"min": 0,
+			"sum": 202
+		}
+	],
+	"metricResults": [
+		{
+			"path": "lib/responsive2.dart",
+			"issues": [
+				{
+					"id": "number-of-used-widgets",
+					"location": {
+						"endColumn": 4,
+						"endLine": 77,
+						"startColumn": 3,
+						"startLine": 16,
+						"startOffset": 418
+					},
+					"message": "This method uses 26 different widgets, which exceeds the threshold of 20.",
+					"effortInMinutes": 10,
+					"declarationName": "_ResponsiveWidgetState.build",
+					"declarationType": "method",
+					"level": "high",
+					"threshold": 20,
+					"unitType": "widgets",
+					"value": 26
+				}
+			]
+		},
+		{
+			"path": "lib/widgets/beveled_rectangle_border.dart",
+			"issues": [
+				{
+					"id": "coupling-between-object-classes",
+					"location": {
+						"endColumn": 2,
+						"endLine": 74,
+						"startColumn": 1,
+						"startLine": 18,
+						"startOffset": 811
+					},
+					"message": "This class is coupled with 21 other classes, which exceeds the threshold of 20.",
+					"effortInMinutes": 15,
+					"declarationName": "MyApp",
+					"declarationType": "class",
+					"level": "high",
+					"threshold": 20,
+					"unitType": "classes",
+					"value": 21
+				}
+			]
+		},
+		{
+			"path": "lib/widgets/sensitivity.dart",
+			"issues": [
+				{
+					"id": "coupling-between-object-classes",
+					"location": {
+						"endColumn": 2,
+						"endLine": 120,
+						"startColumn": 1,
+						"startLine": 50,
+						"startOffset": 2011
+					},
+					"message": "This class is coupled with 22 other classes, which exceeds the threshold of 20.",
+					"effortInMinutes": 15,
+					"declarationName": "_SensitiveContentExampleState",
+					"declarationType": "class",
+					"level": "high",
+					"threshold": 20,
+					"unitType": "classes",
+					"value": 22
+				}
+			]
+		},
+		{
+			"path": "lib/widgets/repaint_boundary.dart",
+			"issues": [
+				{
+					"id": "coupling-between-object-classes",
+					"location": {
+						"endColumn": 2,
+						"endLine": 115,
+						"startColumn": 1,
+						"startLine": 43,
+						"startOffset": 2017
+					},
+					"message": "This class is coupled with 24 other classes, which exceeds the threshold of 20.",
+					"effortInMinutes": 15,
+					"declarationName": "_RepaintBoundaryDemoState",
+					"declarationType": "class",
+					"level": "high",
+					"threshold": 20,
+					"unitType": "classes",
+					"value": 24
+				}
+			]
+		},
+		{
+			"path": "lib/widgets/layer_link.dart",
+			"issues": [
+				{
+					"id": "coupling-between-object-classes",
+					"location": {
+						"endColumn": 2,
+						"endLine": 172,
+						"startColumn": 1,
+						"startLine": 52,
+						"startOffset": 2017
+					},
+					"message": "This class is coupled with 30 other classes, which exceeds the threshold of 20.",
+					"effortInMinutes": 15,
+					"declarationName": "_LayerLinkDropdownExampleState",
+					"declarationType": "class",
+					"level": "high",
+					"threshold": 20,
+					"unitType": "classes",
+					"value": 30
+				}
+			]
+		},
+		{
+			"path": "lib/widgets/repaint_boundary_to_image_2.dart",
+			"issues": [
+				{
+					"id": "coupling-between-object-classes",
+					"location": {
+						"endColumn": 2,
+						"endLine": 154,
+						"startColumn": 1,
+						"startLine": 29,
+						"startOffset": 556
+					},
+					"message": "This class is coupled with 32 other classes, which exceeds the threshold of 20.",
+					"effortInMinutes": 15,
+					"declarationName": "_DrawingPadScreenState",
+					"declarationType": "class",
+					"level": "high",
+					"threshold": 20,
+					"unitType": "classes",
+					"value": 32
+				},
+				{
+					"id": "number-of-used-widgets",
+					"location": {
+						"endColumn": 4,
+						"endLine": 153,
+						"startColumn": 3,
+						"startLine": 62,
+						"startOffset": 1628
+					},
+					"message": "This method uses 23 different widgets, which exceeds the threshold of 20.",
+					"effortInMinutes": 10,
+					"declarationName": "_DrawingPadScreenState.build",
+					"declarationType": "method",
+					"level": "high",
+					"threshold": 20,
+					"unitType": "widgets",
+					"value": 23
+				},
+				{
+					"id": "source-lines-of-code",
+					"location": {
+						"endColumn": 4,
+						"endLine": 153,
+						"startColumn": 3,
+						"startLine": 62,
+						"startOffset": 1628
+					},
+					"message": "This method has 83 source lines of code, which exceeds the threshold of 60.",
+					"effortInMinutes": 10,
+					"declarationName": "_DrawingPadScreenState.build",
+					"declarationType": "method",
+					"level": "high",
+					"threshold": 60,
+					"unitType": "lines",
+					"value": 83
+				},
+				{
+					"id": "widgets-nesting-level",
+					"location": {
+						"endColumn": 4,
+						"endLine": 153,
+						"startColumn": 3,
+						"startLine": 62,
+						"startOffset": 1628
+					},
+					"message": "This method has widgets nesting level of 9, which exceeds the threshold of 8.",
+					"effortInMinutes": 10,
+					"declarationName": "_DrawingPadScreenState.build",
+					"declarationType": "method",
+					"level": "high",
+					"threshold": 8,
+					"value": 9
+				}
+			]
+		}
+	]
+}

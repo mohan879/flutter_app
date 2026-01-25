@@ -1,0 +1,16 @@
+dcm:
+  rules:
+    - avoid-banned-exports:
+        entries:
+          # Block direct export of platform implementations from the barrel file
+          - paths: ['lib/my_package\.dart']
+            deny:
+              - '.*_android\.dart'
+              - '.*_ios\.dart'
+              - '.*_web\.dart'
+              - '.*_mobile\.dart'
+              - '.*_stub\.dart'
+            message:
+              'Use conditional exports instead of exporting platform files
+              directly.'
+            severity: error

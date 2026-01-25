@@ -1,0 +1,10 @@
+name: abe_clean_architecture_layers
+description:
+  Example showing avoid-banned-exports across clean architecture layers.
+version: 0.1.0
+publish_to: none
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dev_dependencies:
+  dart_code_metrics: ^5.7.6

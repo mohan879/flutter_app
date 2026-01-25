@@ -1,0 +1,3 @@
+class FilePickerIos {
+  const FilePickerIos();
+}

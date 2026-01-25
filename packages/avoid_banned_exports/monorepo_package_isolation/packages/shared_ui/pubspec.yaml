@@ -1,0 +1,13 @@
+name: shared_ui
+description: Shared UI package used in monorepo isolation example.
+version: 0.1.0
+publish_to: none
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  feature_auth:
+    path: ../feature_auth
+
+dev_dependencies:
+  dart_code_metrics: ^5.7.6

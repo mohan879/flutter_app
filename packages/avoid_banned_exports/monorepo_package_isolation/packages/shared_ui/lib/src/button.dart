@@ -1,0 +1,3 @@
+class SharedButton {
+  const SharedButton();
+}

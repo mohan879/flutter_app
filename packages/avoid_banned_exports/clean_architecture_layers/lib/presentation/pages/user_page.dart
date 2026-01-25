@@ -1,0 +1,3 @@
+class UserPage {
+  const UserPage();
+}

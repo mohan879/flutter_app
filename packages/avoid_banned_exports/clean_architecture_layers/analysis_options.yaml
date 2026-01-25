@@ -1,0 +1,19 @@
+dcm:
+  rules:
+    - avoid-banned-exports:
+        entries:
+          # Domain barrel must not re-export data or presentation code
+          - paths: ['lib/domain/domain\.dart']
+            deny:
+              - '.*/data/.*'
+              - '.*/presentation/.*'
+              - 'package:flutter/.*'
+            message:
+              'Domain layer cannot export data, presentation, or Flutter code.'
+            severity: error
+
+          # Data barrel should not export presentation code
+          - paths: ['lib/data/data\.dart']
+            deny: ['.*/presentation/.*']
+            message: 'Data layer cannot export presentation code.'
+            severity: error

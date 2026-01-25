@@ -1,0 +1,3 @@
+class DsTheme {
+  const DsTheme();
+}

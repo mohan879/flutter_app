@@ -1,0 +1,3 @@
+class FilePickerAndroid {
+  const FilePickerAndroid();
+}

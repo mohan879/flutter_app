@@ -1,0 +1,23 @@
+dcm:
+  rules:
+    - avoid-banned-exports:
+        entries:
+          # Core cannot depend on features or app
+          - paths: ['packages/core/lib/.*\.dart']
+            deny:
+              - 'package:feature_.*'
+              - 'package:app/.*'
+            message: 'Core must not export feature or app packages.'
+            severity: error
+
+          # Features cannot export other features
+          - paths: ['packages/feature_.*/lib/.*\.dart']
+            deny: ['package:feature_.*']
+            message: 'Features should not re-export other feature packages.'
+            severity: error
+
+          # Shared UI cannot depend on features
+          - paths: ['packages/shared_ui/lib/.*\.dart']
+            deny: ['package:feature_.*']
+            message: 'Shared UI must not depend on feature packages.'
+            severity: error

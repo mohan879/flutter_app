@@ -1,0 +1,9 @@
+dcm:
+  rules:
+    - avoid-banned-exports:
+        entries:
+          - paths: ['lib/.*\.dart']
+            exclude-paths: ['lib/theme/.*', 'lib/design_system/.*']
+            deny: ['package:flutter/material.dart']
+            message: 'Import Material through the design system, not directly.'
+            severity: warning

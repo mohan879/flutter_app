@@ -1,0 +1,24 @@
+dcm:
+  rules:
+    - avoid-banned-exports:
+        entries:
+          # Barrel file should not re-export internal implementations
+          - paths: ['lib/my_package\.dart']
+            deny:
+              - '.*/internal/.*'
+              - '.*_impl\.dart'
+            message:
+              'Do not export internal implementations from the public API.'
+            severity: error
+
+          # Test utilities and generated files (apply to all lib files)
+          - paths: ['lib/.*\.dart']
+            deny:
+              - '.*_test\.dart'
+              - '.*/test/.*'
+              - 'package:mockito/.*'
+              - 'package:mocktail/.*'
+              - '.*\.g\.dart'
+              - '.*\.freezed\.dart'
+            message: 'Do not export test utilities or generated files.'
+            severity: error

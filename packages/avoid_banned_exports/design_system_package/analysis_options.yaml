@@ -1,0 +1,15 @@
+dcm:
+  rules:
+    - avoid-banned-exports:
+        entries:
+          # Design system barrel should not expose internals
+          - paths: ['lib/design_system\.dart']
+            deny:
+              - '.*/internal/.*'
+              - '.*_impl\.dart'
+              - '.*_utils\.dart'
+              - '.*_calc\.dart'
+            message:
+              'Only export public design system components, not internal
+              utilities.'
+            severity: error

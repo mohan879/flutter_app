@@ -1,0 +1,24 @@
+dcm:
+  rules:
+    - avoid-banned-exports:
+        entries:
+          # Don't leak HTTP client types into your public API
+          - paths: ['lib/my_package\.dart']
+            deny:
+              - 'package:dio/.*'
+              - 'package:http/.*'
+              - 'package:retrofit/.*'
+            message:
+              'Wrap HTTP clients behind your own abstractions instead of
+              re-exporting them.'
+            severity: error
+
+          # Don't leak database types
+          - paths: ['lib/my_package\.dart']
+            deny:
+              - 'package:sqflite/.*'
+              - 'package:hive/.*'
+              - 'package:drift/.*'
+              - 'package:isar/.*'
+            message: 'Database libraries are implementation details.'
+            severity: error

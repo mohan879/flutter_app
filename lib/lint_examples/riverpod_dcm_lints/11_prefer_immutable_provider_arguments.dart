@@ -1,126 +1,77 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part '11_prefer_immutable_provider_arguments.g.dart';
 
 /// --- prefer-immutable-provider-arguments ---
 ///
-/// Family provider arguments need stable equality for proper caching.
-/// If you pass objects that don't implement proper equality,
-/// Riverpod can't cache properly, leading to unnecessary rebuilds,
-/// lost caching, or stale data.
+/// Warns when a Provider's argument does not have a consistent `==`.
+/// If you pass a value that doesn't support stable equality checks, Riverpod
+/// can't know whether the "new" argument is logically the same as the old one.
+///
+/// Issues this rule prevents:
+/// - Unnecessary rebuilds – widget rebuilds even if nothing meaningful changed
+/// - Lost caching – Riverpod thinks you're asking for "new" data every time
+/// - Stale data – providers don't reuse results across identical inputs
 
-// Example providers
-final dataProvider = FutureProvider.family<String, int>((ref, id) async {
-  await Future<void>.delayed(const Duration(milliseconds: 100));
-  return 'Data for $id';
-});
-
-final objectProvider = FutureProvider.family<String, SomeClassWithEquals>((
-  ref,
-  param,
-) async {
-  return 'Data for ${param.value}';
-});
-
-final listProvider = FutureProvider.family<String, List<int>>((
-  ref,
-  items,
-) async {
-  return 'Items: $items';
-});
-
-// Class without proper equality
-class SomeClassWithoutEquals {
-  final int value;
-  SomeClassWithoutEquals(this.value);
-  // No == or hashCode override!
+// Single family provider generated via riverpod_generator (matches DCM example)
+@riverpod
+String someProvider(SomeProviderRef ref, Object arg) {
+  return 'Data for $arg';
 }
 
-// Class with proper equality
+// Class WITHOUT proper equality — BAD to use as argument
+class SomeClassWithoutEquals {
+  SomeClassWithoutEquals();
+  // No == or hashCode override! (unstable equality)
+}
+
+// Class WITH proper equality — GOOD to use as argument
 class SomeClassWithEquals {
-  final int value;
-  const SomeClassWithEquals(this.value);
+  const SomeClassWithEquals();
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is SomeClassWithEquals &&
-          runtimeType == other.runtimeType &&
-          value == other.value;
+      identical(this, other) || other.runtimeType == runtimeType;
 
   @override
-  int get hashCode => value.hashCode;
+  int get hashCode => runtimeType.hashCode;
 }
 
-// This provider accepts objects without proper equality
-final badObjectProvider = FutureProvider.family<String, SomeClassWithoutEquals>(
-  (ref, param) async {
-    return 'Data for ${param.value}';
-  },
-);
-
-// BAD: Arguments without consistent equality
+// -------------------------------------------------------------------------
+// BAD: Arguments without consistent '==' — triggers lint violations!
+// -------------------------------------------------------------------------
 void badUsage(WidgetRef ref) {
-  // 💥 New instance every time — Riverpod can't cache properly!
-  ref.watch(badObjectProvider(SomeClassWithoutEquals(42)));
+  // 💥 LINT: Avoid passing arguments without consistent '=='.
+  ref.watch(someProvider(SomeClassWithoutEquals()));
 
-  // 💥 Lists don't have value equality by default!
-  ref.watch(listProvider([42]));
+  // 💥 LINT: Avoid passing arguments without consistent '=='.
+  ref.watch(someProvider([42]));
 
-  // 💥 Functions are never equal!
-  // ref.watch(someProvider(() { })); // This would be very bad
+  // 💥 LINT: Avoid passing arguments without consistent '=='.
+  ref.watch(someProvider(() {}));
 }
 
-// GOOD: Arguments with stable equality
+// -------------------------------------------------------------------------
+// GOOD: Arguments with stable equality — no lint violations
+// -------------------------------------------------------------------------
 void goodUsage(WidgetRef ref) {
   // ✅ Class with proper equality
-  ref.watch(objectProvider(const SomeClassWithEquals(42)));
+  ref.watch(someProvider(const SomeClassWithEquals()));
 
-  // ✅ Primitive types have value equality
-  ref.watch(dataProvider(42));
+  // ✅ const class instance
+  ref.watch(someProvider(const SomeClassWithEquals()));
 
-  // ✅ const lists have value equality
-  ref.watch(listProvider(const [42]));
+  // ✅ const Object
+  ref.watch(someProvider(const Object()));
 
-  // ✅ const maps also work
-  // ref.watch(mapProvider(const {'key': 42}));
-}
+  // ✅ const list
+  ref.watch(someProvider(const [42]));
 
-// GOOD: Use records for multiple parameters (Dart 3+)
-final multiParamProvider = FutureProvider.family<String, (int, String)>((
-  ref,
-  params,
-) async {
-  final (id, name) = params;
-  return 'User $id: $name';
-});
+  // ✅ const map
+  ref.watch(someProvider(const {'string': 42}));
 
-void usingRecords(WidgetRef ref) {
-  // ✅ Records have value equality
-  ref.watch(multiParamProvider((1, 'John')));
-}
-
-// GOOD: Use freezed or equatable for complex classes
-// With freezed:
-// @freezed
-// class UserParams with _$UserParams {
-//   const factory UserParams({
-//     required int id,
-//     required String name,
-//   }) = _UserParams;
-// }
-
-// Example showing the caching problem
-void demonstrateCachingProblem(WidgetRef ref) {
-  // These are considered DIFFERENT by Riverpod (bad):
-  final a1 = SomeClassWithoutEquals(42);
-  final a2 = SomeClassWithoutEquals(42);
-  print('Without equals: ${a1 == a2}'); // false!
-
-  // These are considered THE SAME by Riverpod (good):
-  final b1 = const SomeClassWithEquals(42);
-  final b2 = const SomeClassWithEquals(42);
-  print('With equals: ${b1 == b2}'); // true!
-
-  // For lists:
-  print('Non-const lists: ${[42] == [42]}'); // false!
-  print('Const lists: ${const [42] == const [42]}'); // true!
+  // ✅ Variable (already evaluated)
+  final variable = const SomeClassWithEquals();
+  ref.watch(someProvider(variable));
 }

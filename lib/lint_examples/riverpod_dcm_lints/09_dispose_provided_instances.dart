@@ -81,12 +81,11 @@ final keepAliveProvider = Provider.autoDispose<DisposableService>((ref) {
   final instance = DisposableService();
 
   // Keep the provider alive until explicitly invalidated
-  // ignore: unused_local_variable
   final link = ref.keepAlive();
 
   ref.onDispose(() {
     instance.dispose();
-    // link is automatically cleaned up
+    link.close(); // ✅ explicitly close keepAlive link
   });
 
   return instance;

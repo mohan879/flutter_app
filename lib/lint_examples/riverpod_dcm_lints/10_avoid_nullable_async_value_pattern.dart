@@ -75,25 +75,3 @@ void usingMaybeWhen(AsyncValue<int?> asyncValue) {
     orElse: () => print('Loading or error'),
   );
 }
-
-// Example showing the problem clearly
-void demonstrateProblem() {
-  // This represents a successfully loaded null value
-  final loadedNull = AsyncValue<int?>.data(null);
-
-  // BAD: This won't print "Value: null" as expected!
-  switch (loadedNull) {
-    case AsyncValue<int?>(:final value?):
-      print('BAD: Value: $value'); // Won't execute!
-    default:
-      print('BAD: Default case'); // This will execute incorrectly
-  }
-
-  // GOOD: This correctly handles the null value
-  switch (loadedNull) {
-    case AsyncValue<int?>(:final value, hasValue: true):
-      print('GOOD: Value: $value'); // Prints "GOOD: Value: null"
-    default:
-      print('GOOD: Default case');
-  }
-}

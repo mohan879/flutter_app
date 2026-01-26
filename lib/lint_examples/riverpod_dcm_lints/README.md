@@ -14,32 +14,25 @@ DCM MCP server integration docs: Here is how you can integrate
 
 ## Files (in article order):
 
-- `01_avoid_ref_read_inside_build.dart` — Demonstrates
-  `avoid-ref-read-inside-build` (subscribe when building UI).
-- `02_avoid_ref_watch_outside_build.dart` — Demonstrates
-  `avoid-ref-watch-outside-build` (avoid subscriptions in callbacks).
-- `03_use_ref_and_state_synchronously.dart` — Demonstrates
-  `use-ref-and-state-synchronously` (check mounted after async gaps).
-- `04_use_ref_read_synchronously.dart` — Demonstrates
-  `use-ref-read-synchronously` (check mounted before ref.read after async).
-- `05_avoid_notifier_constructors.dart` — Demonstrates
-  `avoid-notifier-constructors` (use build method instead).
-- `06_avoid_public_notifier_properties.dart` — Demonstrates
-  `avoid-public-notifier-properties` (everything goes through state).
-- `07_avoid_assigning_notifiers.dart` — Demonstrates `avoid-assigning-notifiers`
-  (get fresh reference after async gaps).
-- `08_avoid_ref_inside_state_dispose.dart` — Demonstrates
-  `avoid-ref-inside-state-dispose` (don't use ref in dispose).
-- `09_dispose_provided_instances.dart` — Demonstrates
-  `dispose-provided-instances` (cleanup via onDispose).
-- `10_avoid_nullable_async_value_pattern.dart` — Demonstrates
-  `avoid-nullable-async-value-pattern` (use hasValue for nullable types).
-- `11_prefer_immutable_provider_arguments.dart` — Demonstrates
-  `prefer-immutable-provider-arguments` (stable equality for family args).
-- `12_avoid_calling_notifier_members_inside_build.dart` — Demonstrates
-  `avoid-calling-notifier-members-inside-build` (side effects in callbacks).
-- `13_avoid_unnecessary_consumer_widgets.dart` — Demonstrates
-  `avoid-unnecessary-consumer-widgets` (use StatelessWidget if ref not needed).
+| #   | File                                                  | Rule                                          | Status               |
+| --- | ----------------------------------------------------- | --------------------------------------------- | -------------------- |
+| 01  | `01_avoid_ref_read_inside_build.dart`                 | `avoid-ref-read-inside-build`                 | ✅ Triggers lint     |
+| 02  | `02_avoid_ref_watch_outside_build.dart`               | `avoid-ref-watch-outside-build`               | ✅ Triggers lint     |
+| 03  | `03_use_ref_and_state_synchronously.dart`             | `use-ref-and-state-synchronously`             | ✅ Triggers lint     |
+| 04  | `04_use_ref_read_synchronously.dart`                  | `use-ref-read-synchronously`                  | ✅ Triggers lint     |
+| 05  | `05_avoid_notifier_constructors.dart`                 | `avoid-notifier-constructors`                 | ✅ Triggers lint     |
+| 06  | `06_avoid_public_notifier_properties.dart`            | `avoid-public-notifier-properties`            | ✅ Triggers lint     |
+| 07  | `07_avoid_assigning_notifiers.dart`                   | `avoid-assigning-notifiers`                   | ✅ Triggers lint     |
+| 08  | `08_avoid_ref_inside_state_dispose.dart`              | `avoid-ref-inside-state-dispose`              | ✅ Triggers lint     |
+| 09  | `09_dispose_provided_instances.dart`                  | `dispose-provided-instances`                  | ✅ Triggers lint     |
+| 10  | `10_avoid_nullable_async_value_pattern.dart`          | `avoid-nullable-async-value-pattern`          | ✅ Triggers lint     |
+| 11  | `11_prefer_immutable_provider_arguments.dart`         | `prefer-immutable-provider-arguments`         | ⚠️ May need code gen |
+| 12  | `12_avoid_calling_notifier_members_inside_build.dart` | `avoid-calling-notifier-members-inside-build` | ✅ Triggers lint     |
+| 13  | `13_avoid_unnecessary_consumer_widgets.dart`          | `avoid-unnecessary-consumer-widgets`          | ✅ Triggers lint     |
+
+**Note:** File 11 (`prefer-immutable-provider-arguments`) may require
+`riverpod_generator` code generation to detect violations properly. The example
+follows DCM documentation patterns.
 
 ## Usage
 

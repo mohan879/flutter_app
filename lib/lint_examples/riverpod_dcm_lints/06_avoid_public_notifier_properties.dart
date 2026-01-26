@@ -9,26 +9,14 @@ import 'package:meta/meta.dart';
 
 // BAD: Public property bypasses state management
 class MyNotifierBad extends Notifier<int> {
-  int _someValue = 0;
+  int _privateGetter = 0;
 
-  // 💥 This property doesn't go through Riverpod's state management!
-  // Changes to this won't notify listeners
-  int get publicGetter => _someValue;
-
-  // 💥 This setter bypasses state management
-  set publicSetter(int value) {
-    _someValue = value;
-    // Listeners won't be notified!
-  }
+  // 💥 LINT: Avoid creating public properties for notifiers.
+  //    Try moving them to the 'state' property.
+  int get publicGetter => _privateGetter;
 
   @override
   int build() => 0;
-
-  void updateValue(int value) {
-    _someValue = value;
-    // Even if we call this, widgets watching the provider won't rebuild
-    // unless we also update `state`
-  }
 }
 
 final myNotifierBadProvider = NotifierProvider<MyNotifierBad, int>(

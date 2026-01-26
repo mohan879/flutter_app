@@ -19,11 +19,6 @@ class Counter extends Notifier<int> {
   void reset() {
     state = 0;
   }
-
-  Future<void> fetchAndUpdate() async {
-    await Future<void>.delayed(const Duration(seconds: 1));
-    state = 100;
-  }
 }
 
 final counterProvider = NotifierProvider<Counter, int>(Counter.new);
@@ -41,27 +36,10 @@ class _HomeConsumerStateBad extends ConsumerState<HomeConsumerStateBad> {
   Widget build(BuildContext context) {
     final counter = ref.watch(counterProvider.notifier);
 
-    // 💥 This is called on every rebuild!
-    // If parent widget rebuilds, this keeps incrementing!
+    // 💥 Calling notifier member inside build causes side effects
     counter.increment();
 
     return Text('Count: ${ref.watch(counterProvider)}');
-  }
-}
-
-// BAD: Calling methods on notifier during build
-class AnotherBadExample extends ConsumerWidget {
-  const AnotherBadExample({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    // 💥 Side effect during build!
-    ref.read(counterProvider.notifier).reset();
-
-    // 💥 Async side effect is even worse!
-    // ref.read(counterProvider.notifier).fetchAndUpdate();
-
-    return const Text('Bad example');
   }
 }
 
@@ -117,24 +95,6 @@ class _ListenExampleState extends ConsumerState<ListenExample> {
   }
 }
 
-// GOOD: If you need initialization, use ref.listenSelf in the notifier
-class InitializedCounter extends Notifier<int> {
-  @override
-  int build() {
-    // ✅ Initialize in the notifier's build, not widget's build
-    ref.listenSelf((previous, next) {
-      debugPrint('Counter changed: $previous -> $next');
-    });
-    return 0;
-  }
-
-  void increment() => state++;
-}
-
-final initializedCounterProvider = NotifierProvider<InitializedCounter, int>(
-  InitializedCounter.new,
-);
-
 // Example App
 class RiverpodNotifierMembersApp extends StatelessWidget {
   const RiverpodNotifierMembersApp({super.key});
@@ -149,7 +109,6 @@ class RiverpodNotifierMembersApp extends StatelessWidget {
             children: const [
               // HomeConsumerStateBad(), // Don't run this - it causes infinite loop!
               HomeConsumerStateGood(),
-              ListenExample(),
             ],
           ),
         ),

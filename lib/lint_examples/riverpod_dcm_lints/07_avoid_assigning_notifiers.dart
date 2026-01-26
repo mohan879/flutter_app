@@ -13,11 +13,6 @@ class CounterNotifier extends Notifier<int> {
   int build() => 0;
 
   void increment() => state++;
-
-  Future<void> someAsyncMethod() async {
-    await Future<void>.delayed(const Duration(milliseconds: 100));
-    state++;
-  }
 }
 
 final counterProvider = NotifierProvider<CounterNotifier, int>(
@@ -86,20 +81,19 @@ class _HomeConsumerStateGood extends ConsumerState<HomeConsumerStateGood> {
   }
 }
 
-// GOOD: For synchronous code, assignment is fine
-class SyncExample extends ConsumerWidget {
-  const SyncExample({super.key});
+// GOOD: Always call methods inline without storing reference
+class SyncExampleGood extends ConsumerWidget {
+  const SyncExampleGood({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ElevatedButton(
       onPressed: () {
-        // ✅ No async gap, so assignment is safe
-        final notifier = ref.read(counterProvider.notifier);
-        notifier.increment();
-        notifier.increment(); // Still safe, no async between calls
+        // ✅ Call methods inline — no stored reference
+        ref.read(counterProvider.notifier).increment();
+        ref.read(counterProvider.notifier).increment();
       },
-      child: const Text('Sync: OK'),
+      child: const Text('Good: Inline calls'),
     );
   }
 }
@@ -120,7 +114,7 @@ class RiverpodAssigningNotifiersApp extends StatelessWidget {
               SizedBox(height: 20),
               HomeConsumerStateGood(),
               SizedBox(height: 20),
-              SyncExample(),
+              SyncExampleGood(),
             ],
           ),
         ),

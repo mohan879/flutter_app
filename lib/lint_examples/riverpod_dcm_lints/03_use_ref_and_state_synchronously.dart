@@ -1,97 +1,76 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// --- use-ref-and-state-synchronously ---
 ///
-/// Using `ref` or `state` after an async gap without checking if the notifier
-/// is still mounted can lead to `UnmountedRefException` crashes. During async
-/// operations, the provider might rebuild or dispose, making the old ref invalid.
+/// Warns when a notifier's `ref` or `state` are called past an await point
+/// (also known as asynchronous gap).
 ///
-/// Note: In Riverpod 2.x, use `ref.exists(provider)` or handle exceptions.
-/// In Riverpod 3.x+, use `ref.mounted` directly.
+/// Using `ref` or `state` after an async gap will lead to `UnmountedRefException`
+/// if the notifier is already unmounted.
+///
+/// Try checking for `ref.mounted` before using `ref` or `state`.
 
-// BAD: Using state after async gap without any safety check
-class CountNotifierBad extends AutoDisposeNotifier<int> {
+// -------------------------------------------------------------------------
+// BAD: Using state after async gap without checking ref.mounted
+// -------------------------------------------------------------------------
+class CountNotifierBad extends Notifier<int> {
   @override
   int build() => 0;
 
   Future<void> incrementDelayed() async {
     await Future<void>.delayed(const Duration(seconds: 1));
-    // 💥 The notifier might be disposed during the delay!
-    // This can throw UnmountedRefException
+    // 💥 LINT: Avoid accessing 'ref' or 'state' past an await point
+    //          without checking if the ref is mounted.
     state += 1;
   }
 }
 
-final countNotifierBadProvider =
-    NotifierProvider.autoDispose<CountNotifierBad, int>(CountNotifierBad.new);
+final countNotifierBadProvider = NotifierProvider<CountNotifierBad, int>(
+  CountNotifierBad.new,
+);
 
-// GOOD: Use try-catch or ref.onDispose to cancel pending work
-class CountNotifierGood extends AutoDisposeNotifier<int> {
-  bool _disposed = false;
-
-  @override
-  int build() {
-    ref.onDispose(() {
-      _disposed = true;
-    });
-    return 0;
-  }
-
-  Future<void> incrementDelayed() async {
-    await Future<void>.delayed(const Duration(seconds: 1));
-    // ✅ Check if disposed before using state
-    if (!_disposed) {
-      state += 1;
-    }
-  }
-}
-
-final countNotifierGoodProvider =
-    NotifierProvider.autoDispose<CountNotifierGood, int>(CountNotifierGood.new);
-
-// Another BAD example: Using ref.read after async gap
-class AnotherNotifierBad extends AutoDisposeNotifier<int> {
+// -------------------------------------------------------------------------
+// GOOD: Check disposal state before using state after async gap
+// -------------------------------------------------------------------------
+class CountNotifierGood extends Notifier<int> {
   @override
   int build() => 0;
 
-  Future<void> doSomething() async {
-    final value = ref.read(countNotifierBadProvider);
+  Future<void> incrementDelayed() async {
     await Future<void>.delayed(const Duration(seconds: 1));
-    // 💥 Provider might be disposed during delay!
-    ref.read(countNotifierBadProvider);
-    state = value;
+    // ✅ Check mounted before using state
+    if (!ref.mounted) return;
+    state += 1;
   }
 }
 
-final anotherNotifierBadProvider =
-    NotifierProvider.autoDispose<AnotherNotifierBad, int>(
-      AnotherNotifierBad.new,
-    );
+final countNotifierGoodProvider = NotifierProvider<CountNotifierGood, int>(
+  CountNotifierGood.new,
+);
 
-// GOOD: Track disposal state and check before ref operations
-class AnotherNotifierGood extends AutoDisposeNotifier<int> {
-  bool _disposed = false;
+// Example widget showing the problem
+class MyWidget extends StatelessWidget {
+  const MyWidget({super.key});
 
   @override
-  int build() {
-    ref.onDispose(() {
-      _disposed = true;
-    });
-    return 0;
-  }
-
-  Future<void> doSomething() async {
-    final value = ref.read(countNotifierGoodProvider);
-    await Future<void>.delayed(const Duration(seconds: 1));
-    // ✅ Safe after checking disposal state
-    if (!_disposed) {
-      ref.read(countNotifierGoodProvider);
-      state = value;
-    }
-  }
+  Widget build(BuildContext context) => GestureDetector(
+    child: const Text('show dialog'),
+    onTap: () => showDialog(
+      context: context,
+      builder: (context) => Consumer(
+        builder: (context, ref, _) => AlertDialog(
+          actions: [
+            GestureDetector(
+              child: const Text('increment and close'),
+              onTap: () {
+                // User taps, triggers async operation, then closes dialog
+                // The notifier may be unmounted before incrementDelayed completes!
+              },
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
 }
-
-final anotherNotifierGoodProvider =
-    NotifierProvider.autoDispose<AnotherNotifierGood, int>(
-      AnotherNotifierGood.new,
-    );

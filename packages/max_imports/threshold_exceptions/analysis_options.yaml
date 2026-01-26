@@ -1,0 +1,7 @@
+# See https://dcm.dev/docs/rules/common/max-imports
+# Strict threshold with file-level exceptions for DI setup
+
+dcm:
+  rules:
+    - max-imports:
+        max-number: 5

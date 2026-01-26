@@ -1,0 +1,7 @@
+# See https://dcm.dev/docs/rules/common/max-imports
+# Basic threshold configuration - limit imports to 10 per file
+
+dcm:
+  rules:
+    - max-imports:
+        max-number: 10

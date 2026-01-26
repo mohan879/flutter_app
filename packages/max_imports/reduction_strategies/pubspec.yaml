@@ -1,0 +1,14 @@
+name: reduction_strategies
+description: Demonstrates barrel files and facade patterns to reduce imports
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  dart_code_metrics: ^5.0.0

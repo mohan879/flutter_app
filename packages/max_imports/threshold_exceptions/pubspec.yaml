@@ -1,0 +1,15 @@
+name: threshold_exceptions
+description: Demonstrates using file-level ignores for valid exceptions
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  get_it: ^7.6.0
+
+dev_dependencies:
+  dart_code_metrics: ^5.0.0

@@ -1,0 +1,7 @@
+# See https://dcm.dev/docs/rules/common/max-imports
+# Strict threshold to demonstrate import reduction strategies
+
+dcm:
+  rules:
+    - max-imports:
+        max-number: 5

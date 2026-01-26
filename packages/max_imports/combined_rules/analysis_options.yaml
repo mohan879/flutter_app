@@ -1,0 +1,12 @@
+# See https://dcm.dev/docs/rules/common/max-imports
+# Combining max-imports with other architecture rules
+
+dcm:
+  rules:
+    - max-imports:
+        max-number: 10
+    - avoid-banned-imports:
+        entries:
+          - paths: ['lib/domain/.*\.dart']
+            deny: ['package:flutter/.*']
+            message: 'Domain layer should not import Flutter'

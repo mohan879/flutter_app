@@ -1,0 +1,9 @@
+name: test_file_boundaries
+description:
+  Example demonstrating test file boundary enforcement with
+  avoid-banned-file-names rule
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ^3.0.0

@@ -1,0 +1,12 @@
+dcm:
+  rules:
+    - avoid-banned-file-names:
+        entries:
+          # Ban non-standard generated file patterns
+          - '.*_generated\.dart$'
+          - '.*\.generated\.dart$'
+          - '.*_gen\.dart$'
+
+          # Ban double extensions (build_runner mistakes)
+          - '.*\.g\.g\.dart$'
+          - '.*\.freezed\.freezed\.dart$'

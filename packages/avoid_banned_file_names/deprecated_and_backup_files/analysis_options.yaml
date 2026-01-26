@@ -1,0 +1,19 @@
+dcm:
+  rules:
+    - avoid-banned-file-names:
+        entries:
+          # Ban deprecated/backup markers
+          - '.*_old\.dart$'
+          - '.*_backup\.dart$'
+          - '.*_deprecated\.dart$'
+          - '.*_legacy\.dart$'
+          - '.*\.bak\.dart$'
+
+          # Ban copy markers
+          - '.*_copy\.dart$'
+          - '.*_copy[0-9]+\.dart$'
+          - '.* \([0-9]+\)\.dart$'
+
+          # Ban inline version numbers
+          - '.*_v[0-9]+\.dart$'
+          - '.*V[0-9]+\.dart$'

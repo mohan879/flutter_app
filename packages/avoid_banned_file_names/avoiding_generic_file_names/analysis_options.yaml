@@ -1,0 +1,17 @@
+dcm:
+  rules:
+    - avoid-banned-file-names:
+        entries:
+          # Ban vague/generic names (without ^ anchor since DCM matches full path)
+          - '/utils\.dart$'
+          - '/helpers\.dart$'
+          - '/common\.dart$'
+          - '/misc\.dart$'
+          - '/data\.dart$'
+          - '/api\.dart$'
+          - '/service\.dart$'
+          - '/model\.dart$'
+
+          # Ban "manager" suffix (often indicates BIG objects)
+          - '.*_manager\.dart$'
+          - '.*Manager\.dart$'

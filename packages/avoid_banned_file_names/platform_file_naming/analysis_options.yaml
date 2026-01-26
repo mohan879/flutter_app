@@ -1,0 +1,15 @@
+dcm:
+  rules:
+    - avoid-banned-file-names:
+        entries:
+          # Platform files without underscore separator (e.g., fileandroid.dart)
+          # These patterns catch common mistakes where the underscore is missing
+          - '[a-z]android\.dart$'
+          - '[a-z]ios\.dart$'
+          - '[a-z]web\.dart$'
+
+          # Ban hardcoded environment names - use runtime config instead
+          - '.*_production\.dart$'
+          - '.*_staging\.dart$'
+          - '.*_debug\.dart$'
+          - '.*_dev\.dart$'

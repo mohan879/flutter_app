@@ -1,0 +1,16 @@
+dcm:
+  rules:
+    - avoid-banned-file-names:
+        entries:
+          # Test files don't belong in lib/
+          - '.*_test\.dart$'
+          - '.*_tests\.dart$'
+          - '^test_.*\.dart$'
+
+          # Mock/fake/stub files don't belong in lib/
+          - '.*_mock\.dart$'
+          - '.*_mocks\.dart$'
+          - '.*_fake\.dart$'
+          - '.*_fakes\.dart$'
+          - '.*_stub\.dart$'
+          - '.*_fixture\.dart$'

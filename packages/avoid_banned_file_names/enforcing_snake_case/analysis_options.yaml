@@ -1,0 +1,12 @@
+dcm:
+  rules:
+    - avoid-banned-file-names:
+        entries:
+          # Ban kebab-case (hyphens in file names)
+          - '-'
+
+          # Ban spaces in file names
+          - ' '
+
+          # Ban double underscores
+          - '__'

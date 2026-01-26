@@ -1,0 +1,9 @@
+name: deprecated_and_backup_files
+description:
+  Example demonstrating deprecated/backup file detection with
+  avoid-banned-file-names rule
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ^3.0.0

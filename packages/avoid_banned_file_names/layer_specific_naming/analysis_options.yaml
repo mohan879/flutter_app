@@ -1,0 +1,21 @@
+dcm:
+  rules:
+    - avoid-banned-file-names:
+        entries:
+          # Domain layer should not have these (path includes 'domain/')
+          - 'domain/.*_widget\.dart$'
+          - 'domain/.*_screen\.dart$'
+          - 'domain/.*_page\.dart$'
+          - 'domain/.*_bloc\.dart$'
+          - 'domain/.*_cubit\.dart$'
+          - 'domain/.*_dto\.dart$'
+          - 'domain/.*_api\.dart$'
+          - 'domain/.*_datasource\.dart$'
+
+          # Data layer should not have these (path includes 'data/')
+          - 'data/.*_widget\.dart$'
+          - 'data/.*_screen\.dart$'
+          - 'data/.*_page\.dart$'
+          - 'data/.*_bloc\.dart$'
+          - 'data/.*_cubit\.dart$'
+          - 'data/.*_entity\.dart$'

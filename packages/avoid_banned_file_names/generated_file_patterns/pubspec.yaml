@@ -1,0 +1,9 @@
+name: generated_file_patterns
+description:
+  Example demonstrating non-standard generated file pattern detection with
+  avoid-banned-file-names rule
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ^3.0.0

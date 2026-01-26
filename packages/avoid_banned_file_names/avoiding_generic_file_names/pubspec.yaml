@@ -1,0 +1,9 @@
+name: avoiding_generic_file_names
+description:
+  Example demonstrating banning generic file names with avoid-banned-file-names
+  rule
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ^3.0.0

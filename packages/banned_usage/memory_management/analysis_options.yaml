@@ -1,0 +1,21 @@
+include: package:dcm_presets/all.yaml
+
+dcm:
+  rules:
+    - banned-usage:
+        entries:
+          # Timer without cleanup
+          - name: Timer.periodic
+            description:
+              'Store Timer reference and cancel in dispose(). Use TimerService
+              for auto-cleanup.'
+            severity: warning
+
+          # Stream subscriptions (in presentation layer)
+          - type: Stream
+            entries:
+              - name: listen
+                description:
+                  'Store StreamSubscription and cancel in dispose(). Consider
+                  using StreamBuilder instead.'
+                severity: warning

@@ -1,0 +1,28 @@
+include: package:dcm_presets/all.yaml
+
+dcm:
+  rules:
+    - banned-usage:
+        entries:
+          # Navigation - Use custom router
+          - name: Navigator.push
+            description:
+              'Use AppRouter.push() for consistent navigation with analytics
+              tracking.'
+          - name: Navigator.pushNamed
+            description: 'Use AppRouter.pushNamed() instead.'
+          - name: Navigator.pop
+            description: 'Use AppRouter.pop() for consistent back navigation.'
+
+          # Dialogs - Use custom implementations
+          - name: showDialog
+            description:
+              'Use AppDialogs.show() for consistent dialog styling and
+              analytics.'
+          - name: showModalBottomSheet
+            description: 'Use AppBottomSheet.show() for consistent styling.'
+
+          # Snackbars - Use custom implementation
+          - name: ScaffoldMessenger.showSnackBar
+            description:
+              'Use AppSnackbar.show() for consistent snackbar styling.'

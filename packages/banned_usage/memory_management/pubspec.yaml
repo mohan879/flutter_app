@@ -1,0 +1,8 @@
+name: memory_management
+description:
+  Example demonstrating memory and resource management with banned-usage rule
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'

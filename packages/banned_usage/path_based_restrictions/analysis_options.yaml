@@ -1,0 +1,26 @@
+include: package:dcm_presets/all.yaml
+
+dcm:
+  rules:
+    - banned-usage:
+        entries:
+          # Ban in domain layer only
+          - name: BuildContext
+            description: 'Domain layer should not use Flutter BuildContext.'
+            paths: ['lib/domain/.*\.dart']
+            severity: error
+
+          # Ban raw SQL except in database layer
+          - name: rawQuery
+            description:
+              'Raw SQL queries are only allowed in the database layer.'
+            paths: ['lib/(?!data/local/database).*\.dart']
+            severity: error
+
+          # Ban setState in screens (should use state management)
+          - name: setState
+            description:
+              'Use BLoC or other state management instead of setState in
+              screens.'
+            paths: ['lib/presentation/screens/.*\.dart']
+            severity: warning

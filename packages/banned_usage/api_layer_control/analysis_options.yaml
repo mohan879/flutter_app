@@ -1,0 +1,27 @@
+include: package:dcm_presets/all.yaml
+
+dcm:
+  rules:
+    - banned-usage:
+        entries:
+          # HTTP client control - ban direct Dio usage
+          - type: Dio
+            entries:
+              - name: get
+                description:
+                  'Use ApiClient.get() for consistent error handling and
+                  interceptors.'
+              - name: post
+                description:
+                  'Use ApiClient.post() for consistent error handling and
+                  interceptors.'
+
+          # JSON parsing control
+          - name: jsonDecode
+            description:
+              'Use SafeJson.decode() with error handling, or let Dio handle JSON
+              parsing.'
+          - name: jsonEncode
+            description:
+              'Use SafeJson.encode() with error handling, or let serialization
+              handle it.'

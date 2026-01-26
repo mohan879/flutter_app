@@ -1,0 +1,26 @@
+include: package:dcm_presets/all.yaml
+
+dcm:
+  rules:
+    - banned-usage:
+        entries:
+          # Ban ElevatedButton except in design system
+          - type: ElevatedButton
+            entries:
+              - name: new
+                description: 'Use DSButton.primary() from design system.'
+                exclude-paths: ['lib/design_system/.*']
+            severity: error
+
+          # Ban Dio except in network layer
+          - type: Dio
+            entries:
+              - name: get
+                description:
+                  'Use ApiClient methods for consistent error handling.'
+                exclude-paths: ['lib/core/network/.*', 'lib/data/remote/.*']
+              - name: post
+                description:
+                  'Use ApiClient methods for consistent error handling.'
+                exclude-paths: ['lib/core/network/.*', 'lib/data/remote/.*']
+            severity: error

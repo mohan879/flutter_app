@@ -1,0 +1,21 @@
+include: package:dcm_presets/all.yaml
+
+dcm:
+  rules:
+    - banned-usage:
+        entries:
+          - name: DateTime.now
+            description: 'Use Clock.now() for testable time handling.'
+            severity: error
+
+          - type: List
+            entries:
+              - name: first
+                description:
+                  'Use firstOrNull to avoid StateError on empty lists.'
+              - name: last
+                description:
+                  'Use lastOrNull to avoid StateError on empty lists.'
+              - name: single
+                description:
+                  'Use singleOrNull to avoid StateError on 0 or 2+ elements.'

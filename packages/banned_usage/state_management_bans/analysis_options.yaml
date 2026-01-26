@@ -1,0 +1,29 @@
+include: package:dcm_presets/all.yaml
+
+dcm:
+  rules:
+    - banned-usage:
+        entries:
+          # GetX banned patterns
+          - name: Get.put
+            description:
+              'Use GetIt or injectable for dependency injection, not Get.put.'
+            severity: error
+
+          - name: Get.find
+            description:
+              'Use GetIt.I<T>() or constructor injection instead of Get.find.'
+            severity: error
+
+          # Provider anti-patterns
+          - name: Provider.of
+            description:
+              'Use context.read() or context.watch() instead of Provider.of.'
+            severity: warning
+
+          # BLoC anti-patterns (emit outside of handlers)
+          - name: BlocBase.emit
+            description:
+              'Use emitter from event handler, not direct emit calls from
+              outside BLoC.'
+            severity: error

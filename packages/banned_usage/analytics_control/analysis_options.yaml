@@ -1,0 +1,27 @@
+include: package:dcm_presets/all.yaml
+
+dcm:
+  rules:
+    - banned-usage:
+        entries:
+          # Firebase Analytics
+          - name: FirebaseAnalytics.instance
+            description:
+              'Use AnalyticsService.logEvent() for consistent analytics
+              tracking.'
+            severity: error
+
+          - name: FirebaseAnalytics.logEvent
+            description:
+              'Use AnalyticsService.logEvent() instead of direct Firebase calls.'
+            severity: error
+
+          # Firebase Crashlytics
+          - name: FirebaseCrashlytics.instance
+            description: 'Use CrashReporter service for error reporting.'
+            severity: error
+
+          - name: FirebaseCrashlytics.recordError
+            description:
+              'Use CrashReporter.report() for consistent error reporting.'
+            severity: error

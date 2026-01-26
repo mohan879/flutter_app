@@ -1,0 +1,9 @@
+name: exclude_paths_exceptions
+description:
+  Example demonstrating exclude-paths for targeted exceptions with banned-usage
+  rule
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'

@@ -1,0 +1,26 @@
+include: package:dcm_presets/all.yaml
+
+dcm:
+  rules:
+    - banned-usage:
+        entries:
+          # Insecure storage in auth files
+          - name: SharedPreferences.setString
+            description:
+              'Do not store sensitive data in SharedPreferences. Use
+              SecureStorage.'
+            paths: ['lib/.*auth.*\.dart', 'lib/.*token.*\.dart']
+            severity: error
+
+          # Logging sensitive data
+          - name: print
+            description:
+              'Never print sensitive data. Use secure logging that redacts PII.'
+            paths: ['lib/.*auth.*\.dart', 'lib/.*password.*\.dart']
+            severity: error
+
+          # URL handling
+          - name: Uri.parse
+            description:
+              'Use SafeUri.parse() with validation to prevent injection attacks.'
+            severity: warning

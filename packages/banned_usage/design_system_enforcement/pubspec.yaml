@@ -1,0 +1,8 @@
+name: design_system_enforcement
+description:
+  Example demonstrating design system widget enforcement with banned-usage rule
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'

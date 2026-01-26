@@ -1,0 +1,21 @@
+include: package:dcm_presets/all.yaml
+
+dcm:
+  rules:
+    - banned-usage:
+        entries:
+          # Ban test utilities in production code
+          - name-pattern: '^Mock.*'
+            description: 'Mock classes should only be used in tests.'
+            paths: ['lib/.*\.dart']
+            severity: error
+
+          - name-pattern: '^Fake.*'
+            description: 'Fake classes should only be used in tests.'
+            paths: ['lib/.*\.dart']
+            severity: error
+
+          - name: when
+            description: 'Mockito when() should only be used in tests.'
+            paths: ['lib/.*\.dart']
+            severity: error

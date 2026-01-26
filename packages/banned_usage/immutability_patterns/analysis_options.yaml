@@ -1,0 +1,46 @@
+include: package:dcm_presets/all.yaml
+
+dcm:
+  rules:
+    - banned-usage:
+        entries:
+          # List mutations - prefer immutable operations
+          - type: List
+            entries:
+              - name: add
+                description:
+                  'Use [...list, item] for immutable list operations.'
+              - name: addAll
+                description:
+                  'Use [...list, ...otherList] for immutable list operations.'
+              - name: remove
+                description:
+                  'Use list.where((e) => e != item).toList() for immutable
+                  operations.'
+              - name: clear
+                description: 'Assign an empty list instead: list = [];'
+              - name: sort
+                description:
+                  'Use list.sorted() from collection package for immutable
+                  sorting.'
+
+          # Set mutations
+          - type: Set
+            entries:
+              - name: add
+                description: 'Use {...set, item} for immutable set operations.'
+              - name: remove
+                description:
+                  'Use set.where((e) => e != item).toSet() for immutable
+                  operations.'
+
+          # Map mutations
+          - type: Map
+            entries:
+              - name: addAll
+                description:
+                  'Use {...map, ...otherMap} for immutable map operations.'
+              - name: remove
+                description:
+                  'Use Map.fromEntries(map.entries.where((e) => e.key != key))
+                  for immutable operations.'

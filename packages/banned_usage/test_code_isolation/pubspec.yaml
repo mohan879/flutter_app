@@ -1,0 +1,7 @@
+name: test_code_isolation
+description: Example demonstrating test code isolation with banned-usage rule
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'

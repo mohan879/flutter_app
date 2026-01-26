@@ -1,0 +1,28 @@
+include: package:dcm_presets/all.yaml
+
+dcm:
+  rules:
+    - banned-usage:
+        entries:
+          # Match any method starting with "debug"
+          - name-pattern: '^debug.*'
+            description: 'Remove debug methods before production release.'
+            severity: warning
+
+          # Match any method containing "unsafe"
+          - name-pattern: '.*[Uu]nsafe.*'
+            description: 'Unsafe methods should not be used in production code.'
+            severity: error
+
+          # Match deprecated method patterns
+          - name-pattern: '.*Deprecated$'
+            description:
+              'This deprecated method should be replaced with the new
+              implementation.'
+
+          # Type-scoped patterns
+          - type: List
+            entries:
+              - name-pattern: '^clear|^remove.*'
+                description:
+                  'Mutating list methods are banned. Use immutable operations.'

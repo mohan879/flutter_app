@@ -1,0 +1,23 @@
+include: package:dcm_presets/all.yaml
+
+dcm:
+  rules:
+    - banned-usage:
+        entries:
+          # Ban direct instantiation - use DI
+          - type: ApiClient
+            entries:
+              - name: new
+                description:
+                  'Use GetIt to get ApiClient instance instead of direct
+                  instantiation.'
+
+          # Ban Singleton access - use DI
+          - name: Singleton.instance
+            description:
+              'Use dependency injection instead of singleton pattern.'
+            severity: error
+
+          # Ban DateTime.now - use Clock
+          - name: DateTime.now
+            description: 'Use Clock.now() for testable current time.'

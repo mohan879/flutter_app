@@ -1,0 +1,31 @@
+include: package:dcm_presets/all.yaml
+
+dcm:
+  rules:
+    - banned-usage:
+        entries:
+          # Ban raw widgets - use design system
+          - type: ElevatedButton
+            entries:
+              - name: new
+                description: 'Use DSButton.primary() from the design system.'
+          - type: TextButton
+            entries:
+              - name: new
+                description: 'Use DSButton.text() from the design system.'
+          - type: TextField
+            entries:
+              - name: new
+                description:
+                  'Use DSTextField for consistent styling and validation.'
+          - type: Text
+            entries:
+              - name: new
+                description: 'Use DSText widget with predefined text styles.'
+                severity: warning
+
+          # Ban direct Image usage
+          - name: Image.network
+            description:
+              'Use CachedNetworkImage or DSImage.network() for caching and error
+              handling.'

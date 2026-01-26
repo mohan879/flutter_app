@@ -1,0 +1,21 @@
+include: package:dcm_presets/all.yaml
+
+dcm:
+  rules:
+    - banned-usage:
+        entries:
+          # Console output
+          - name: print
+            description:
+              'Use Logger.d(), Logger.i(), Logger.w(), or Logger.e() for
+              structured logging.'
+            severity: error
+          - name: debugPrint
+            description:
+              'Use Logger service for consistent logging across the app.'
+            severity: warning
+
+          # Developer tools in production code
+          - name: debugger
+            description: 'Remove debugger() calls before committing code.'
+            severity: error

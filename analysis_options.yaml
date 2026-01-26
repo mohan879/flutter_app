@@ -64,3 +64,26 @@ dcm:
     - prefer-multi-provider
     - prefer-provider-extensions
     #--------Provider-------------
+
+    #--------Riverpod-------------
+    # Crash & leak prevention
+    - avoid-ref-read-inside-build
+    - avoid-ref-watch-outside-build
+    - use-ref-and-state-synchronously
+    - use-ref-read-synchronously
+    - avoid-ref-inside-state-dispose
+    - dispose-provided-instances
+    - avoid-assigning-notifiers
+
+    # Architectural integrity
+    - avoid-notifier-constructors
+    - avoid-public-notifier-properties
+    - avoid-calling-notifier-members-inside-build
+
+    # Pattern matching
+    - avoid-nullable-async-value-pattern
+
+    # Code style
+    - prefer-immutable-provider-arguments
+    - avoid-unnecessary-consumer-widgets
+    #--------Riverpod-------------

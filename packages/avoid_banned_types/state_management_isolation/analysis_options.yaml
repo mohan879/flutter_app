@@ -1,0 +1,25 @@
+dcm:
+  rules:
+    - avoid-banned-types:
+        entries:
+          # BLoC types stay in presentation only
+          - paths: ['lib/data/.*\.dart', 'lib/domain/.*\.dart']
+            types:
+              - Bloc
+              - Cubit
+              - BlocProvider
+              - BlocBuilder
+              - BlocListener
+            message:
+              'State management types should only be in presentation layer.'
+            severity: error
+
+          # Ban GetX when using BLoC (pick one state management solution)
+          - paths: ['lib/presentation/.*\.dart']
+            types:
+              - GetxController
+              - GetBuilder
+              - Obx
+              - GetX
+            message: 'GetX is not allowed. Use BLoC for state management.'
+            severity: error

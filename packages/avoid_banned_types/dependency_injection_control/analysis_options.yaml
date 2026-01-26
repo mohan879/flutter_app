@@ -1,0 +1,12 @@
+dcm:
+  rules:
+    - avoid-banned-types:
+        entries:
+          # GetIt should only be used in DI configuration files
+          - exclude-paths: ['lib/di/.*\.dart', 'lib/injection\.dart']
+            types:
+              - GetIt
+            message:
+              'GetIt should only be used in DI configuration files. Use
+              constructor injection.'
+            severity: error

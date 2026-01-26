@@ -1,0 +1,10 @@
+name: preventing_anti_patterns
+description:
+  Example demonstrating avoid-banned-types for preventing anti-pattern types
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies: {}

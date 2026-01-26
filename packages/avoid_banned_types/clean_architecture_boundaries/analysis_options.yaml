@@ -1,0 +1,27 @@
+dcm:
+  rules:
+    - avoid-banned-types:
+        entries:
+          # Domain layer must be Flutter-independent
+          - paths: ['lib/domain/.*\.dart']
+            types:
+              - Widget
+              - BuildContext
+              - Color
+              - State
+              - Bloc
+              - Cubit
+            message: 'Domain layer must be Flutter-independent.'
+            severity: error
+
+          # Presentation layer should use domain models, not data layer types
+          - paths: ['lib/presentation/.*\.dart']
+            types:
+              - Dto$
+              - DataSource
+              - ApiClient
+              - Database
+            message:
+              'Presentation layer should use domain models, not data layer
+              types.'
+            severity: error

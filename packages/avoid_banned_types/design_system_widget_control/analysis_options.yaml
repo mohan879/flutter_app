@@ -1,0 +1,21 @@
+dcm:
+  rules:
+    - avoid-banned-types:
+        entries:
+          # Prevent raw Scaffold usage - use design system wrapper
+          - paths: ['lib/presentation/.*\.dart']
+            exclude-paths: ['lib/presentation/design_system/.*\.dart']
+            types:
+              - ^Scaffold$
+            message:
+              'Use AppScaffold from design system instead of raw Scaffold.'
+            severity: warning
+
+          # Prefer StatelessWidget with state management for reusable components
+          - paths: ['lib/presentation/components/.*\.dart']
+            types:
+              - StatefulWidget
+            message:
+              'Prefer StatelessWidget with state management for reusable
+              components.'
+            severity: warning

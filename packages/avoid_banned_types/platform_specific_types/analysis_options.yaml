@@ -1,0 +1,21 @@
+dcm:
+  rules:
+    - avoid-banned-types:
+        entries:
+          # Platform channel types should only be in lib/platform/
+          - exclude-paths: ['lib/platform/.*\.dart']
+            types:
+              - MethodChannel
+              - EventChannel
+              - BasicMessageChannel
+            message: 'Platform channel types should only be in lib/platform/.'
+            severity: error
+
+          # iOS-specific types only in *_ios.dart files
+          - exclude-paths: ['.*_ios\.dart']
+            types:
+              - CupertinoButton
+              - CupertinoApp
+              - CupertinoPageScaffold
+            message: 'iOS-specific types should only be in *_ios.dart files.'
+            severity: warning

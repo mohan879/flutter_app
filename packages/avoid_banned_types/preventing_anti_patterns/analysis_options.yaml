@@ -1,0 +1,16 @@
+dcm:
+  rules:
+    - avoid-banned-types:
+        entries:
+          # Prevent using Object as a parameter/return type
+          - types:
+              - ^Object$
+            message: 'Avoid Object. Use a specific type or sealed class.'
+            severity: warning
+
+          # Prevent FutureOr (rarely needed)
+          - types:
+              - FutureOr
+            message:
+              'FutureOr is rarely needed. Use Future or sync return types.'
+            severity: warning

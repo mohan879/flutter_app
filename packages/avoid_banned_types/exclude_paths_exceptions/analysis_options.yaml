@@ -1,0 +1,15 @@
+dcm:
+  rules:
+    - avoid-banned-types:
+        entries:
+          # Ban Dio type everywhere except network layer
+          - exclude-paths:
+              ['lib/core/network/.*\.dart', 'lib/data/remote/.*\.dart']
+            types:
+              - Dio
+              - Response
+              - DioException
+            message:
+              'HTTP types should only be used in network layer. Use abstractions
+              elsewhere.'
+            severity: error

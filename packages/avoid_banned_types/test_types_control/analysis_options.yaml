@@ -1,0 +1,12 @@
+dcm:
+  rules:
+    - avoid-banned-types:
+        entries:
+          # Mock types should never be in production code
+          - paths: ['lib/.*\.dart']
+            types:
+              - ^Mock.*
+              - ^Fake.*
+            message:
+              'Mock and Fake types should not be used in production code.'
+            severity: error

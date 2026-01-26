@@ -1,0 +1,13 @@
+dcm:
+  rules:
+    - avoid-banned-types:
+        entries:
+          # Ban is checks for state types - encourage exhaustive pattern matching
+          - types:
+              - LoadingState
+              - ErrorState
+              - SuccessState
+            positions:
+              - is
+            message: 'Use switch pattern matching instead of is checks.'
+            severity: warning

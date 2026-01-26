@@ -1,0 +1,26 @@
+analyzer:
+  exclude:
+    - '**/*.g.dart'
+    - '**/*.freezed.dart'
+
+dcm:
+  rules:
+    - avoid-banned-imports:
+        entries:
+          # Web-specific imports only in web files
+          - paths: ['lib/(?!.*_web\.dart).*\.dart']
+            exclude-paths: ['lib/.*_stub\.dart']
+            deny:
+              - 'dart:html'
+              - 'dart:js'
+              - 'package:web/.*'
+            message: 'Web-specific imports should only be in *_web.dart files.'
+            severity: error
+
+          # IO imports not allowed in web files
+          - paths: ['lib/.*_web\.dart']
+            deny:
+              - 'dart:io'
+              - 'dart:ffi'
+            message: 'dart:io is not available on web. Use conditional imports.'
+            severity: error

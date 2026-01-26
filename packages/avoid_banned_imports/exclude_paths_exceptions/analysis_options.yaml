@@ -1,0 +1,16 @@
+analyzer:
+  exclude:
+    - '**/*.g.dart'
+    - '**/*.freezed.dart'
+
+dcm:
+  rules:
+    - avoid-banned-imports:
+        entries:
+          # Ban Dio everywhere except the network layer
+          - paths: ['lib/.*\.dart']
+            exclude-paths: ['lib/core/network/.*', 'lib/data/remote/.*']
+            deny:
+              - 'package:dio/.*'
+            message: 'HTTP clients should only be used in the network layer.'
+            severity: error

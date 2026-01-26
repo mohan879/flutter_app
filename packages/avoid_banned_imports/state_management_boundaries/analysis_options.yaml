@@ -1,0 +1,22 @@
+analyzer:
+  exclude:
+    - '**/*.g.dart'
+    - '**/*.freezed.dart'
+
+dcm:
+  rules:
+    - avoid-banned-imports:
+        entries:
+          # All state management stays out of domain and data
+          - paths: ['lib/domain/.*\.dart', 'lib/data/.*\.dart']
+            deny:
+              - 'package:flutter_bloc/.*'
+              - 'package:bloc/.*'
+              - 'package:riverpod/.*'
+              - 'package:flutter_riverpod/.*'
+              - 'package:hooks_riverpod/.*'
+              - 'package:provider/.*'
+              - 'package:get/.*'
+            message:
+              'State management should only be used in the presentation layer.'
+            severity: error

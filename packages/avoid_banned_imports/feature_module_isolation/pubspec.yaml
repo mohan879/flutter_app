@@ -1,0 +1,11 @@
+name: feature_module_isolation
+description:
+  Example demonstrating feature module isolation with avoid-banned-imports
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ^3.0.0
+
+dev_dependencies:
+  dcm: any

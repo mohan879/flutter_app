@@ -1,0 +1,11 @@
+name: state_management_boundaries
+description:
+  Example demonstrating state management boundaries with avoid-banned-imports
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: ^3.0.0
+
+dev_dependencies:
+  dcm: any

@@ -1,0 +1,26 @@
+analyzer:
+  exclude:
+    - '**/*.g.dart'
+    - '**/*.freezed.dart'
+
+dcm:
+  rules:
+    - avoid-banned-imports:
+        entries:
+          # Core module should be self-contained
+          - paths: ['lib/core/.*\.dart']
+            deny:
+              - '.*/features/.*'
+              - '.*/presentation/.*'
+            message: 'Core module cannot depend on feature-specific code.'
+            severity: error
+
+          # Utils should be pure
+          - paths: ['lib/utils/.*\.dart']
+            deny:
+              - 'package:flutter/.*'
+              - '.*/features/.*'
+            message:
+              'Utility functions should be pure and not depend on business logic
+              or Flutter.'
+            severity: warning

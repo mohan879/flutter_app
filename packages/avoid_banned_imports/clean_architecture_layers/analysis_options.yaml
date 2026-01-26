@@ -1,0 +1,38 @@
+analyzer:
+  exclude:
+    - '**/*.g.dart'
+    - '**/*.freezed.dart'
+
+dcm:
+  rules:
+    - avoid-banned-imports:
+        entries:
+          # Domain layer should be pure Dart - no Flutter dependencies
+          - paths: ['lib/domain/.*\.dart']
+            deny:
+              - 'package:flutter/.*'
+              - 'dart:ui'
+              - 'dart:html'
+            message:
+              'Domain layer must be platform-independent. No Flutter or UI
+              imports allowed.'
+            severity: error
+
+          # Domain layer cannot depend on data or infrastructure
+          - paths: ['lib/domain/.*\.dart']
+            deny:
+              - '.*/data/.*'
+              - 'package:dio/.*'
+              - 'package:http/.*'
+              - 'package:sqflite/.*'
+              - 'package:hive/.*'
+            message: 'Domain layer cannot depend on data layer implementations.'
+            severity: error
+
+          # Data layer cannot import presentation
+          - paths: ['lib/data/.*\.dart']
+            deny:
+              - '.*/presentation/.*'
+              - '.*/widgets/.*'
+            message: 'Data layer cannot depend on presentation layer.'
+            severity: error

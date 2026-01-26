@@ -1,0 +1,29 @@
+analyzer:
+  exclude:
+    - '**/*.g.dart'
+    - '**/*.freezed.dart'
+
+dcm:
+  rules:
+    - avoid-banned-imports:
+        entries:
+          # Unit tests should not import Flutter widgets
+          - paths: ['test/unit/.*\.dart']
+            deny:
+              - 'package:flutter/material.dart'
+              - 'package:flutter_test/flutter_test.dart'
+            message:
+              'Unit tests should not depend on Flutter. Use plain Dart test
+              package.'
+            severity: warning
+
+          # Production code should not import test utilities
+          - paths: ['lib/.*\.dart']
+            deny:
+              - 'package:test/.*'
+              - 'package:flutter_test/.*'
+              - 'package:mockito/.*'
+              - 'package:mocktail/.*'
+              - 'package:fake_async/.*'
+            message: 'Production code should never import test utilities.'
+            severity: error

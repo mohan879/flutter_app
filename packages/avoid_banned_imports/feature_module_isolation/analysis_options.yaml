@@ -1,0 +1,29 @@
+analyzer:
+  exclude:
+    - '**/*.g.dart'
+    - '**/*.freezed.dart'
+
+dcm:
+  rules:
+    - avoid-banned-imports:
+        entries:
+          # Auth feature isolated from other features
+          - paths: ['lib/features/auth/.*\.dart']
+            deny: ['../home/.*', '../profile/.*']
+            message:
+              'Auth feature should not import other features. Use shared
+              abstractions.'
+            severity: error
+
+          # Home feature isolated from other features
+          - paths: ['lib/features/home/.*\.dart']
+            deny: ['../auth/.*', '../profile/.*']
+            message: 'Home feature should not import other features directly.'
+            severity: error
+
+          # Profile feature isolated from other features
+          - paths: ['lib/features/profile/.*\.dart']
+            deny: ['../auth/.*', '../home/.*']
+            message:
+              'Profile feature should not import other features directly.'
+            severity: error

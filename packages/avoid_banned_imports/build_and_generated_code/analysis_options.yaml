@@ -1,0 +1,18 @@
+analyzer:
+  exclude:
+    - '**/*.g.dart'
+    - '**/*.freezed.dart'
+
+dcm:
+  rules:
+    - avoid-banned-imports:
+        entries:
+          # Don't import generated files directly (except from their source files)
+          - paths: ['lib/.*(?<!\.g|\.freezed)\.dart$']
+            deny:
+              - '.*\.g\.dart'
+              - '.*\.freezed\.dart'
+            message:
+              'Generated files should be included via part directive, not
+              imported.'
+            severity: error

@@ -1,0 +1,26 @@
+analyzer:
+  exclude:
+    - '**/*.g.dart'
+    - '**/*.freezed.dart'
+
+dcm:
+  rules:
+    - avoid-banned-imports:
+        entries:
+          # Core: no upward dependencies
+          - paths: ['packages/core/lib/.*\.dart']
+            deny:
+              - 'package:shared_.*'
+              - 'package:feature_.*'
+              - 'package:app_.*'
+            message: 'Core package cannot depend on higher-level packages.'
+            severity: error
+
+          # Features: cannot depend on other features or apps
+          - paths: ['packages/feature_.*/lib/.*\.dart']
+            deny:
+              - 'package:feature_(?!common).*'
+              - 'package:app_.*'
+            message:
+              'Feature packages should communicate through shared abstractions.'
+            severity: error

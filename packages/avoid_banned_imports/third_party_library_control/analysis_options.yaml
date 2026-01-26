@@ -1,0 +1,28 @@
+analyzer:
+  exclude:
+    - '**/*.g.dart'
+    - '**/*.freezed.dart'
+
+dcm:
+  rules:
+    - avoid-banned-imports:
+        entries:
+          # Prefer Dio over http
+          - deny:
+              - 'package:http/.*'
+            message: 'Use Dio instead of http package.'
+            severity: warning
+
+          # Prefer freezed over built_value
+          - deny:
+              - 'package:built_value/.*'
+            message: 'Use freezed package instead of built_value.'
+            severity: warning
+
+          # Centralized logging
+          - paths: ['lib/(?!core/logging).*\.dart']
+            deny:
+              - 'dart:developer'
+              - 'package:logger/.*'
+            message: 'Use the centralized logging service from core/logging.'
+            severity: warning

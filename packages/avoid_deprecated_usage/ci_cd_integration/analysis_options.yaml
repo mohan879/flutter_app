@@ -1,0 +1,4 @@
+dcm:
+  rules:
+    - avoid-deprecated-usage:
+        severity: error

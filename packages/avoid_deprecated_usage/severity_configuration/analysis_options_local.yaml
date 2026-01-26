@@ -1,0 +1,5 @@
+# Local development - shows in IDE only
+dcm:
+  rules:
+    - avoid-deprecated-usage:
+        severity: warning

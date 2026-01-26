@@ -1,0 +1,11 @@
+name: package_upgrade_workflow
+description:
+  Example demonstrating workflow for handling deprecations after package
+  upgrades
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies: {}

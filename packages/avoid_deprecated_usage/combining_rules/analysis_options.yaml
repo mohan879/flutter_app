@@ -1,0 +1,16 @@
+dcm:
+  rules:
+    - avoid-deprecated-usage
+
+    - banned-usage:
+        entries:
+          - ident: FlatButton
+            description: 'Use TextButton instead'
+          - ident: accentColor
+            description: 'Use colorScheme.secondary instead'
+
+    - avoid-banned-types:
+        entries:
+          - types: ['^FlatButton$', '^RaisedButton$']
+            message: 'Use Material 3 button equivalents.'
+            severity: error

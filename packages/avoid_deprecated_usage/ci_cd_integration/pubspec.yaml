@@ -1,0 +1,9 @@
+name: ci_cd_integration
+description: Example demonstrating CI/CD integration for avoid-deprecated-usage
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies: {}

@@ -1,0 +1,12 @@
+dcm:
+  metrics:
+    cyclomatic-complexity:
+      threshold: 25 # Default: catches the worst offenders
+      entries:
+        - threshold: 15 # new features must meet modern standards
+          paths:
+            - '.*lib/features/.*'
+        - threshold: 40 # legacy code gets temporary ceiling
+          paths:
+            - '.*lib/legacy/.*'
+            - '.*lib/old_modules/.*'

@@ -1,0 +1,6 @@
+name: tracking_with_entries
+description: Example demonstrating threshold unset in entries for specific paths
+version: 1.0.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'

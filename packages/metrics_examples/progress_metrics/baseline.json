@@ -1,0 +1,463 @@
+{
+	"formatVersion": 12,
+	"timestamp": "2026-02-02 13:08:04.000",
+	"summary": [
+		{ "title": "Total metric below severity violations", "value": 24 },
+		{ "title": "Scanned folders", "value": 1 },
+		{ "title": "Scanned files", "value": 3 },
+		{ "title": "Scanned classes", "value": 3 },
+		{
+			"title": "CBO",
+			"value": 0,
+			"avg": 3.3333333333333335,
+			"max": 10,
+			"min": 0,
+			"sum": 10
+		},
+		{ "title": "CYCLO", "value": 0, "avg": 1.5, "max": 4, "min": 1, "sum": 9 },
+		{ "title": "MNL", "value": 0, "avg": 0.5, "max": 3, "min": 0, "sum": 3 },
+		{ "title": "SLOC", "value": 0, "avg": 6.0, "max": 15, "min": 1, "sum": 30 },
+		{ "title": "WMC", "value": 0, "avg": 3.0, "max": 4, "min": 2, "sum": 9 },
+		{
+			"title": "WNL",
+			"value": 0,
+			"avg": 2.3333333333333335,
+			"max": 7,
+			"min": 0,
+			"sum": 7
+		}
+	],
+	"metricResults": [
+		{
+			"path": "lib/complex_logic.dart",
+			"issues": [
+				{
+					"id": "coupling-between-object-classes",
+					"location": {
+						"endColumn": 2,
+						"endLine": 18,
+						"startColumn": 1,
+						"startLine": 4,
+						"startOffset": 139
+					},
+					"message": "This class is coupled with 0 other classes.",
+					"effortInMinutes": 15,
+					"declarationName": "ComplexLogic",
+					"declarationType": "class",
+					"level": "below",
+					"threshold": -1,
+					"unitType": "classes",
+					"value": 0
+				},
+				{
+					"id": "weighted-methods-per-class",
+					"location": {
+						"endColumn": 2,
+						"endLine": 18,
+						"startColumn": 1,
+						"startLine": 4,
+						"startOffset": 139
+					},
+					"message": "This class has the total methods complexity of 4.",
+					"effortInMinutes": 10,
+					"declarationName": "ComplexLogic",
+					"declarationType": "class",
+					"level": "below",
+					"threshold": -1,
+					"value": 4
+				},
+				{
+					"id": "cyclomatic-complexity",
+					"location": {
+						"endColumn": 4,
+						"endLine": 17,
+						"startColumn": 3,
+						"startLine": 5,
+						"startOffset": 162
+					},
+					"message": "This method has cyclomatic complexity of 4.",
+					"effortInMinutes": 10,
+					"declarationName": "ComplexLogic.processData",
+					"declarationType": "method",
+					"level": "below",
+					"threshold": -1,
+					"value": 4
+				},
+				{
+					"id": "maximum-nesting-level",
+					"location": {
+						"endColumn": 4,
+						"endLine": 17,
+						"startColumn": 3,
+						"startLine": 5,
+						"startOffset": 162
+					},
+					"message": "This method has a nesting level of 3.",
+					"effortInMinutes": 10,
+					"declarationName": "ComplexLogic.processData",
+					"declarationType": "method",
+					"level": "below",
+					"threshold": -1,
+					"value": 3
+				},
+				{
+					"id": "source-lines-of-code",
+					"location": {
+						"endColumn": 4,
+						"endLine": 17,
+						"startColumn": 3,
+						"startLine": 5,
+						"startOffset": 162
+					},
+					"message": "This method has 10 source lines of code.",
+					"effortInMinutes": 10,
+					"declarationName": "ComplexLogic.processData",
+					"declarationType": "method",
+					"level": "below",
+					"threshold": -1,
+					"unitType": "lines",
+					"value": 10
+				}
+			]
+		},
+		{
+			"path": "lib/nested_widget.dart",
+			"issues": [
+				{
+					"id": "coupling-between-object-classes",
+					"location": {
+						"endColumn": 2,
+						"endLine": 27,
+						"startColumn": 1,
+						"startLine": 6,
+						"startOffset": 175
+					},
+					"message": "This class is coupled with 10 other classes.",
+					"effortInMinutes": 15,
+					"declarationName": "NestedWidget",
+					"declarationType": "class",
+					"level": "below",
+					"threshold": -1,
+					"unitType": "classes",
+					"value": 10
+				},
+				{
+					"id": "weighted-methods-per-class",
+					"location": {
+						"endColumn": 2,
+						"endLine": 27,
+						"startColumn": 1,
+						"startLine": 6,
+						"startOffset": 175
+					},
+					"message": "This class has the total methods complexity of 2.",
+					"effortInMinutes": 10,
+					"declarationName": "NestedWidget",
+					"declarationType": "class",
+					"level": "below",
+					"threshold": -1,
+					"value": 2
+				},
+				{
+					"id": "cyclomatic-complexity",
+					"location": {
+						"endColumn": 35,
+						"endLine": 7,
+						"startColumn": 3,
+						"startLine": 7,
+						"startOffset": 222
+					},
+					"message": "This constructor has cyclomatic complexity of 1.",
+					"effortInMinutes": 10,
+					"declarationName": "NestedWidget.NestedWidget",
+					"declarationType": "constructor",
+					"level": "below",
+					"threshold": -1,
+					"value": 1
+				},
+				{
+					"id": "maximum-nesting-level",
+					"location": {
+						"endColumn": 35,
+						"endLine": 7,
+						"startColumn": 3,
+						"startLine": 7,
+						"startOffset": 222
+					},
+					"message": "This constructor has a nesting level of 0.",
+					"effortInMinutes": 10,
+					"declarationName": "NestedWidget.NestedWidget",
+					"declarationType": "constructor",
+					"level": "below",
+					"threshold": -1,
+					"value": 0
+				},
+				{
+					"id": "cyclomatic-complexity",
+					"location": {
+						"endColumn": 4,
+						"endLine": 26,
+						"startColumn": 3,
+						"startLine": 10,
+						"startOffset": 270
+					},
+					"message": "This method has cyclomatic complexity of 1.",
+					"effortInMinutes": 10,
+					"declarationName": "NestedWidget.build",
+					"declarationType": "method",
+					"level": "below",
+					"threshold": -1,
+					"value": 1
+				},
+				{
+					"id": "maximum-nesting-level",
+					"location": {
+						"endColumn": 4,
+						"endLine": 26,
+						"startColumn": 3,
+						"startLine": 10,
+						"startOffset": 270
+					},
+					"message": "This method has a nesting level of 0.",
+					"effortInMinutes": 10,
+					"declarationName": "NestedWidget.build",
+					"declarationType": "method",
+					"level": "below",
+					"threshold": -1,
+					"value": 0
+				},
+				{
+					"id": "source-lines-of-code",
+					"location": {
+						"endColumn": 4,
+						"endLine": 26,
+						"startColumn": 3,
+						"startLine": 10,
+						"startOffset": 270
+					},
+					"message": "This method has 15 source lines of code.",
+					"effortInMinutes": 10,
+					"declarationName": "NestedWidget.build",
+					"declarationType": "method",
+					"level": "below",
+					"threshold": -1,
+					"unitType": "lines",
+					"value": 15
+				},
+				{
+					"id": "widgets-nesting-level",
+					"location": {
+						"endColumn": 4,
+						"endLine": 26,
+						"startColumn": 3,
+						"startLine": 10,
+						"startOffset": 270
+					},
+					"message": "This method has widgets nesting level of 7.",
+					"effortInMinutes": 10,
+					"declarationName": "NestedWidget.build",
+					"declarationType": "method",
+					"level": "below",
+					"threshold": -1,
+					"value": 7
+				}
+			]
+		},
+		{
+			"path": "lib/coupled_service.dart",
+			"issues": [
+				{
+					"id": "coupling-between-object-classes",
+					"location": {
+						"endColumn": 2,
+						"endLine": 23,
+						"startColumn": 1,
+						"startLine": 7,
+						"startOffset": 194
+					},
+					"message": "This class is coupled with 0 other classes.",
+					"effortInMinutes": 15,
+					"declarationName": "CoupledService",
+					"declarationType": "class",
+					"level": "below",
+					"threshold": -1,
+					"unitType": "classes",
+					"value": 0
+				},
+				{
+					"id": "weighted-methods-per-class",
+					"location": {
+						"endColumn": 2,
+						"endLine": 23,
+						"startColumn": 1,
+						"startLine": 7,
+						"startOffset": 194
+					},
+					"message": "This class has the total methods complexity of 3.",
+					"effortInMinutes": 10,
+					"declarationName": "CoupledService",
+					"declarationType": "class",
+					"level": "below",
+					"threshold": -1,
+					"value": 3
+				},
+				{
+					"id": "cyclomatic-complexity",
+					"location": {
+						"endColumn": 51,
+						"endLine": 12,
+						"startColumn": 3,
+						"startLine": 12,
+						"startOffset": 361
+					},
+					"message": "This getter has cyclomatic complexity of 1.",
+					"effortInMinutes": 10,
+					"declarationName": "CoupledService.stream",
+					"declarationType": "getter",
+					"level": "below",
+					"threshold": -1,
+					"value": 1
+				},
+				{
+					"id": "maximum-nesting-level",
+					"location": {
+						"endColumn": 51,
+						"endLine": 12,
+						"startColumn": 3,
+						"startLine": 12,
+						"startOffset": 361
+					},
+					"message": "This getter has a nesting level of 0.",
+					"effortInMinutes": 10,
+					"declarationName": "CoupledService.stream",
+					"declarationType": "getter",
+					"level": "below",
+					"threshold": -1,
+					"value": 0
+				},
+				{
+					"id": "source-lines-of-code",
+					"location": {
+						"endColumn": 51,
+						"endLine": 12,
+						"startColumn": 3,
+						"startLine": 12,
+						"startOffset": 361
+					},
+					"message": "This getter has 1 source line of code.",
+					"effortInMinutes": 10,
+					"declarationName": "CoupledService.stream",
+					"declarationType": "getter",
+					"level": "below",
+					"threshold": -1,
+					"unitType": "line",
+					"value": 1
+				},
+				{
+					"id": "cyclomatic-complexity",
+					"location": {
+						"endColumn": 4,
+						"endLine": 18,
+						"startColumn": 3,
+						"startLine": 14,
+						"startOffset": 413
+					},
+					"message": "This method has cyclomatic complexity of 1.",
+					"effortInMinutes": 10,
+					"declarationName": "CoupledService.addItem",
+					"declarationType": "method",
+					"level": "below",
+					"threshold": -1,
+					"value": 1
+				},
+				{
+					"id": "maximum-nesting-level",
+					"location": {
+						"endColumn": 4,
+						"endLine": 18,
+						"startColumn": 3,
+						"startLine": 14,
+						"startOffset": 413
+					},
+					"message": "This method has a nesting level of 0.",
+					"effortInMinutes": 10,
+					"declarationName": "CoupledService.addItem",
+					"declarationType": "method",
+					"level": "below",
+					"threshold": -1,
+					"value": 0
+				},
+				{
+					"id": "source-lines-of-code",
+					"location": {
+						"endColumn": 4,
+						"endLine": 18,
+						"startColumn": 3,
+						"startLine": 14,
+						"startOffset": 413
+					},
+					"message": "This method has 3 source lines of code.",
+					"effortInMinutes": 10,
+					"declarationName": "CoupledService.addItem",
+					"declarationType": "method",
+					"level": "below",
+					"threshold": -1,
+					"unitType": "lines",
+					"value": 3
+				},
+				{
+					"id": "cyclomatic-complexity",
+					"location": {
+						"endColumn": 4,
+						"endLine": 22,
+						"startColumn": 3,
+						"startLine": 20,
+						"startOffset": 519
+					},
+					"message": "This method has cyclomatic complexity of 1.",
+					"effortInMinutes": 10,
+					"declarationName": "CoupledService.dispose",
+					"declarationType": "method",
+					"level": "below",
+					"threshold": -1,
+					"value": 1
+				},
+				{
+					"id": "maximum-nesting-level",
+					"location": {
+						"endColumn": 4,
+						"endLine": 22,
+						"startColumn": 3,
+						"startLine": 20,
+						"startOffset": 519
+					},
+					"message": "This method has a nesting level of 0.",
+					"effortInMinutes": 10,
+					"declarationName": "CoupledService.dispose",
+					"declarationType": "method",
+					"level": "below",
+					"threshold": -1,
+					"value": 0
+				},
+				{
+					"id": "source-lines-of-code",
+					"location": {
+						"endColumn": 4,
+						"endLine": 22,
+						"startColumn": 3,
+						"startLine": 20,
+						"startOffset": 519
+					},
+					"message": "This method has 1 source line of code.",
+					"effortInMinutes": 10,
+					"declarationName": "CoupledService.dispose",
+					"declarationType": "method",
+					"level": "below",
+					"threshold": -1,
+					"unitType": "line",
+					"value": 1
+				}
+			]
+		}
+	]
+}

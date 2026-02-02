@@ -1,0 +1,6 @@
+name: progress_metrics
+description: Example demonstrating baseline collection for leadership reporting
+version: 1.0.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'

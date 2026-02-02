@@ -1,0 +1,6 @@
+name: critical_code_protection
+description: Example demonstrating non-ignorable metrics for critical paths
+version: 1.0.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'

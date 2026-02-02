@@ -1,0 +1,13 @@
+dcm:
+  metrics:
+    # Enforced: these will fail CI if exceeded
+    cyclomatic-complexity:
+      threshold: 20
+    source-lines-of-code:
+      threshold: 60
+
+    # Tracked only: collect data, no violations
+    coupling-between-object-classes:
+      threshold: unset
+    maximum-nesting-level:
+      threshold: unset

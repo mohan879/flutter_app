@@ -1,0 +1,9 @@
+dcm:
+  metrics:
+    coupling-between-object-classes:
+      threshold: 15
+      entries:
+        - threshold: unset # Collect data for DI setup code, no violations
+          paths:
+            - '.*lib/di/.*'
+            - '.*lib/injection/.*'

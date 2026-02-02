@@ -1,0 +1,32 @@
+dcm:
+  metrics:
+    coupling-between-object-classes:
+      threshold: 15
+      entries:
+        - threshold: 8 # Platform: foundation must be loosely coupled
+          paths:
+            - '.*packages/core/.*'
+            - '.*packages/networking/.*'
+        - threshold: 20 # Features: more flexibility for shipping
+          paths:
+            - '.*packages/features/.*'
+        - threshold: 6 # Design system: components used everywhere
+          paths:
+            - '.*packages/design_system/.*'
+
+    widgets-nesting-level:
+      threshold: 8
+      entries:
+        - threshold: 4 # Design system: flat, composable widgets
+          paths:
+            - '.*packages/design_system/.*'
+
+    source-lines-of-code:
+      threshold: 50
+      entries:
+        - threshold: 30 # Core utilities should be concise
+          paths:
+            - '.*packages/core/.*'
+        - threshold: 80 # Feature screens get more room
+          paths:
+            - '.*packages/features/.*/screens/.*'

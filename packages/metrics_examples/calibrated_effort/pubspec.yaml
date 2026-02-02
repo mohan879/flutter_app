@@ -1,0 +1,7 @@
+name: calibrated_effort
+description:
+  Example demonstrating custom effort estimates for technical debt calculation
+version: 1.0.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'

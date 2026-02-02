@@ -1,0 +1,40 @@
+dcm:
+  metrics:
+    cyclomatic-complexity:
+      threshold: 15
+      entries:
+        - threshold: 8 # Domain logic: simple and testable
+          paths:
+            - '.*lib/domain/.*'
+        - threshold: 12 # Services connecting app parts
+          paths:
+            - '.*lib/services/.*'
+            - '.*lib/repositories/.*'
+        - threshold: 20 # Widgets: platform checks, null handling
+          paths:
+            - '.*lib/presentation/.*'
+            - '.*lib/ui/.*'
+
+    source-lines-of-code:
+      threshold: 50
+      entries:
+        - threshold: 30 # Utility functions: concise
+          paths:
+            - '.*lib/utils/.*'
+            - '.*lib/extensions/.*'
+        - threshold: 40 # Domain: focused use cases
+          paths:
+            - '.*lib/domain/.*'
+        - threshold: 80 # Screens: can be longer
+          paths:
+            - '.*lib/presentation/screens/.*'
+
+    widgets-nesting-level:
+      threshold: 6
+      entries:
+        - threshold: 4 # Reusable components: flat
+          paths:
+            - '.*lib/design_system/.*'
+        - threshold: 8 # Complex screens: more flexibility
+          paths:
+            - '.*lib/presentation/screens/.*'

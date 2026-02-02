@@ -1,0 +1,7 @@
+name: team_thresholds
+description:
+  Example demonstrating per-team threshold configuration in a monorepo
+version: 1.0.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'

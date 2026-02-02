@@ -1,0 +1,13 @@
+dcm:
+  metrics:
+    cyclomatic-complexity:
+      threshold: 5
+      effort: 30 # Your team averages 30 min to refactor complex functions
+
+    coupling-between-object-classes:
+      threshold: 2
+      effort: 90 # Decoupling is architectural work
+
+    weighted-methods-per-class:
+      threshold: 10
+      effort: 60 # Class refactoring takes time

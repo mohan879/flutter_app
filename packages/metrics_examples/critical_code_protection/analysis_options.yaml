@@ -1,0 +1,19 @@
+dcm:
+  metrics:
+    cyclomatic-complexity:
+      threshold: 20
+      ignorable: false # Cannot suppress with // ignore:
+      entries:
+        - threshold: 10 # Extra strict for critical code
+          paths:
+            - '.*lib/payments/.*'
+            - '.*lib/auth/.*'
+            - '.*lib/migrations/.*'
+
+    maximum-nesting-level:
+      threshold: 5
+      ignorable: false
+      entries:
+        - threshold: 3
+          paths:
+            - '.*lib/payments/.*'

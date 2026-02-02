@@ -1,0 +1,36 @@
+dcm:
+  metrics:
+    # Control flow complexity: stricter for non-widget code
+    cyclomatic-complexity:
+      threshold: 15
+      entries:
+        - threshold: 10 # Business logic should be simple
+          paths:
+            - '.*lib/domain/.*'
+            - '.*lib/application/.*'
+        - threshold: 20 # Widget code can have more branches (platform checks, etc.)
+          paths:
+            - '.*lib/presentation/.*'
+
+    # Coupling: critical for code connecting app parts
+    coupling-between-object-classes:
+      threshold: 12
+      entries:
+        - threshold: 6 # Services should be loosely coupled
+          paths:
+            - '.*lib/services/.*'
+            - '.*lib/repositories/.*'
+        - threshold: 15 # Widgets often depend on more types
+          paths:
+            - '.*lib/presentation/.*'
+
+    # Nesting: stricter for logic, relaxed for widgets
+    maximum-nesting-level:
+      threshold: 4
+      entries:
+        - threshold: 3 # Business logic: keep it flat
+          paths:
+            - '.*lib/domain/.*'
+        - threshold: 6 # Widget builders can nest deeper
+          paths:
+            - '.*lib/presentation/.*'

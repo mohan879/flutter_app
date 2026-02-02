@@ -1,0 +1,14 @@
+dcm:
+  metrics:
+    cyclomatic-complexity:
+      threshold: unset
+    coupling-between-object-classes:
+      threshold: unset
+    weighted-methods-per-class:
+      threshold: unset
+    source-lines-of-code:
+      threshold: unset
+    maximum-nesting-level:
+      threshold: unset
+    widgets-nesting-level:
+      threshold: unset

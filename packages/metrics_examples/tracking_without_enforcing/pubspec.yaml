@@ -1,0 +1,7 @@
+name: tracking_without_enforcing
+description:
+  Example demonstrating threshold unset for data collection without violations
+version: 1.0.0
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'

@@ -1,0 +1,21 @@
+dcm:
+  metrics:
+    # Widget-specific: only applies to build methods
+    widgets-nesting-level:
+      threshold: 6
+      entries:
+        - threshold: 4 # Design system widgets should be flat
+          paths:
+            - '.*lib/design_system/.*'
+            - '.*lib/ui/components/.*'
+
+    # Widget-specific: tracks widget count in build methods
+    number-of-used-widgets:
+      threshold: 15
+      entries:
+        - threshold: 8 # Reusable components should be focused
+          paths:
+            - '.*lib/design_system/.*'
+        - threshold: 20 # Screens can compose more widgets
+          paths:
+            - '.*lib/presentation/screens/.*'

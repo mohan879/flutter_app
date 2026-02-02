@@ -1,0 +1,18 @@
+dcm:
+  metrics:
+    # Detect: presentation layer has high coupling
+    coupling-between-object-classes:
+      threshold: 15
+      entries:
+        - threshold: 0 # Presentation should be loosely coupled - any coupling triggers warning
+          paths:
+            - 'lib/presentation/.*'
+
+  rules:
+    # Prevent: presentation importing data layer directly
+    - avoid-banned-imports:
+        entries:
+          - paths: ['lib/presentation/.*\.dart']
+            deny:
+              - 'data/'
+            message: 'Presentation cannot import data layer directly.'

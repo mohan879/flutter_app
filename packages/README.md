@@ -23,6 +23,8 @@ Flutter projects.
   implementation of a custom Dart analyzer plugin
 - [**max_imports**](max_imports/README.md) - Monitors and limits the number of
   imports per file to manage complexity
+- [**metrics_examples**](metrics_examples/README.md) - DCM metrics configuration
+  examples demonstrating advanced threshold management and team workflows
 
 ## Overview
 

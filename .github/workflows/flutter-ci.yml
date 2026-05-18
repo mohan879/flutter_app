@@ -86,7 +86,7 @@ jobs:
 
       # ✅ Snyk Code Scan
       - name: Snyk Code Test
-        uses: snyk/actions@master
+        uses: snyk/actions/setup@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:

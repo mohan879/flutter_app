@@ -1,3 +1,6 @@
+exclude:
+    - lib/lint_examples/**
+    - packages/**
 include: package:flutter_lints/flutter.yaml
 
 # Custom analyzer plugins

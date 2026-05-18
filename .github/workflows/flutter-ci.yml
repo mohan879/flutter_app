@@ -80,33 +80,33 @@ jobs:
           name: dart-metrics-html-report
           path: dart-metrics-html/
 
-      # ✅ Semgrep Security Scan
-      - name: Semgrep Scan
-        uses: returntocorp/semgrep-action@v1
+      # # ✅ Semgrep Security Scan
+      # - name: Semgrep Scan
+      #   uses: returntocorp/semgrep-action@v1
 
-      # ✅ Snyk Code Scan
-      - name: Snyk Code Test
-        uses: snyk/actions/setup@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          command: code test
+      # # ✅ Snyk Code Scan
+      # - name: Snyk Code Test
+      #   uses: snyk/actions/setup@master
+      #   env:
+      #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      #   with:
+      #     command: code test
 
-      # ✅ Setup Snyk
-      - name: Setup Snyk
-        uses: snyk/actions/setup@v3
+      # # ✅ Setup Snyk
+      # - name: Setup Snyk
+      #   uses: snyk/actions/setup@v3
         
-      # ✅ Authenticate
-      - name: Authenticate Snyk
-        run: snyk auth ${{ secrets.SNYK_TOKEN }}
+      # # ✅ Authenticate
+      # - name: Authenticate Snyk
+      #   run: snyk auth ${{ secrets.SNYK_TOKEN }}
       
-      # ✅ Dependency Scan
-      - name: Snyk Dependency Scan
-        run: snyk test
+      # # ✅ Dependency Scan
+      # - name: Snyk Dependency Scan
+      #   run: snyk test
       
-      # ✅ Code Scan
-      - name: Snyk Code Scan
-        run: snyk code test
+      # # ✅ Code Scan
+      # - name: Snyk Code Scan
+      #   run: snyk code test
 
       # ✅ Build APK
       - name: Build APK

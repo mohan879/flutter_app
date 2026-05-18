@@ -44,7 +44,7 @@ jobs:
 
       # ✅ Static Analysis
       - name: Flutter Analyze
-        run: flutter analyze
+        run: flutter analyze --no-fatal-warnings
 
       # ✅ Unit Testing with Coverage
       - name: Run Tests

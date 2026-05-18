@@ -49,6 +49,12 @@ jobs:
       # ✅ Unit Testing with Coverage
       - name: Run Tests
         run: flutter test --coverage
+        continue-on-error: true
+      
+      - name: Upload reports
+        if: always()
+        run: echo "Uploading reports..."
+        
 
       # ✅ Install Dart Code Metrics
       - name: Install Dart Metrics

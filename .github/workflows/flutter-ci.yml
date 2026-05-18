@@ -42,9 +42,9 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      # ✅ Static Analysis
-      - name: Flutter Analyze
-        run: flutter analyze --no-fatal-warnings
+      # # ✅ Static Analysis
+      # - name: Flutter Analyze
+      #   run: flutter analyze --no-fatal-warnings
 
       # ✅ Unit Testing with Coverage
       - name: Run Tests

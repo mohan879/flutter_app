@@ -92,11 +92,21 @@ jobs:
         with:
           command: code test
 
+      # ✅ Setup Snyk
+      - name: Setup Snyk
+        uses: snyk/actions/setup@v3
+        
+      # ✅ Authenticate
+      - name: Authenticate Snyk
+        run: snyk auth ${{ secrets.SNYK_TOKEN }}
+      
       # ✅ Dependency Scan
       - name: Snyk Dependency Scan
-        uses: snyk/actions/flutter@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        run: snyk test
+      
+      # ✅ Code Scan
+      - name: Snyk Code Scan
+        run: snyk code test
 
       # ✅ Build APK
       - name: Build APK

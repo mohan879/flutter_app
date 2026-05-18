@@ -1,0 +1,104 @@
+name: Flutter CI with Reports
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  flutter-ci:
+    runs-on: macos-latest
+
+    steps:
+      # ✅ Checkout Code
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ✅ Setup Java
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      # ✅ Setup Flutter
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.19.0'
+
+      # ✅ Install Dependencies
+      - name: Install dependencies
+        run: flutter pub get
+
+      # ✅ Static Analysis
+      - name: Flutter Analyze
+        run: flutter analyze
+
+      # ✅ Unit Testing with Coverage
+      - name: Run Tests
+        run: flutter test --coverage
+
+      # ✅ Install Dart Code Metrics
+      - name: Install Dart Metrics
+        run: dart pub global activate dart_code_metrics
+
+      # ✅ Generate JSON Report
+      - name: Generate JSON Report
+        run: |
+          dart pub global run dart_code_metrics:metrics analyze lib \
+          --reporter=json > dart-metrics.json
+
+      # ✅ Generate HTML Report
+      - name: Generate HTML Report
+        run: |
+          dart pub global run dart_code_metrics:metrics analyze lib \
+          --reporter=html \
+          --output-directory=dart-metrics-html
+
+      # ✅ Enforce Quality Gate (fail if issues found)
+      - name: Enforce Quality Gate
+        run: |
+          dart pub global run dart_code_metrics:metrics analyze lib \
+          --fatal-style --fatal-performance
+
+      # ✅ Upload JSON Report (for tools)
+      - name: Upload JSON Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: dart-metrics-json
+          path: dart-metrics.json
+
+      # ✅ Upload HTML Report (for humans)
+      - name: Upload HTML Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: dart-metrics-html-report
+          path: dart-metrics-html/
+
+      # ✅ Semgrep Security Scan
+      - name: Semgrep Scan
+        uses: returntocorp/semgrep-action@v1
+
+      # ✅ Snyk Code Scan
+      - name: Snyk Code Test
+        uses: snyk/actions@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: code test
+
+      # ✅ Dependency Scan
+      - name: Snyk Dependency Scan
+        uses: snyk/actions/flutter@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+      # ✅ Build APK
+      - name: Build APK
+        run: flutter build apk --release
+
+      # ✅ Build iOS
+      - name: Build iOS
+        run: flutter build ios --no-codesign

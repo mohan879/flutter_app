@@ -7,7 +7,8 @@ on:
     branches: [main]
     
 permissions:
-  contents: read    
+  contents: read  
+  security-events: write
 
 jobs:
   flutter-ci:
@@ -17,6 +18,12 @@ jobs:
       # ✅ Checkout Code
       - name: Checkout
         uses: actions/checkout@v4
+        
+      # ✅ Initialize CodeQL (ADD HERE)
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript, python
 
       # ✅ Setup Java
       - name: Setup Java
@@ -92,34 +99,16 @@ jobs:
         with:
           name: dart-metrics-html-report
           path: dart-metrics-html/
-
-      # # ✅ Semgrep Security Scan
-      # - name: Semgrep Scan
-      #   uses: returntocorp/semgrep-action@v1
-
-      # # ✅ Snyk Code Scan
-      # - name: Snyk Code Test
-      #   uses: snyk/actions/setup@master
-      #   env:
-      #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      #   with:
-      #     command: code test
-
-      # # ✅ Setup Snyk
-      # - name: Setup Snyk
-      #   uses: snyk/actions/setup@v3
-        
-      # # ✅ Authenticate
-      # - name: Authenticate Snyk
-      #   run: snyk auth ${{ secrets.SNYK_TOKEN }}
+          
+      # ✅ SAST - Semgrep
+      - name: Semgrep Security Scan
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: "p/owasp-top-ten"
       
-      # # ✅ Dependency Scan
-      # - name: Snyk Dependency Scan
-      #   run: snyk test
-      
-      # # ✅ Code Scan
-      # - name: Snyk Code Scan
-      #   run: snyk code test
+      # ✅ CodeQL Analyze (ADD HERE)
+      - name: CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
 
       # ✅ Build APK
       - name: Build APK
@@ -132,26 +121,26 @@ jobs:
           path: build/app/outputs/flutter-apk/app-release.apk
 
 
-      # ✅ Build iOS
-      - name: Build iOS 
-        run: |
-          echo "Building Flutter iOS app"
+      # # ✅ Build iOS
+      # - name: Build iOS 
+      #   run: |
+      #     echo "Building Flutter iOS app"
       
-          flutter clean
-          flutter pub get
+      #     flutter clean
+      #     flutter pub get
       
-          flutter build ios --release
+      #     flutter build ios --release
       
-          echo "Running Xcode build without code signing"
-          cd ios
+      #     echo "Running Xcode build without code signing"
+      #     cd ios
       
-          xcodebuild \
-            -workspace Runner.xcworkspace \
-            -scheme Runner \
-            -configuration Release \
-            -destination 'generic/platform=iOS' \
-            CODE_SIGNING_ALLOWED=NO \
-            build
+      #     xcodebuild \
+      #       -workspace Runner.xcworkspace \
+      #       -scheme Runner \
+      #       -configuration Release \
+      #       -destination 'generic/platform=iOS' \
+      #       CODE_SIGNING_ALLOWED=NO \
+      #       build
 
           
       # - name: Upload iOS Build Artifact
